@@ -1,0 +1,11 @@
+
+>
+java:S1116"Remove this empty statement.(Åñ­õþÿÿÿÿ8Õ°¼ÎÃ1
+X	java:S125"<This block of commented-out lines of code should be removed.(Ö®õ8ƒš¬ÊÃ1
+Q
+java:S1128"4Remove this unused import 'projectzoo.animals.Lion'.(§è¢8Ö°¼ÎÃ1
+S
+java:S1128"1Remove this unused import 'projectzoo.game.Item'.(è÷Ïñûÿÿÿÿ8Ö°¼ÎÃ1
+R
+java:S1128
+"0Remove this unused import 'java.time.LocalDate'.(›‘¬èýÿÿÿÿ8Ö°¼ÎÃ1
