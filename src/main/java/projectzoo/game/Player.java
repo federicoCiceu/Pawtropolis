@@ -4,11 +4,12 @@ public class Player {
 
     private String namePlayer;
     private int lifePoints;
-
+    private Bag bag;
 
     public Player(String name, int lifePoints) {
         this.namePlayer = name;
         this.lifePoints = lifePoints;
+        this.bag = new Bag(30);
     }
 
     public String getName() {
@@ -27,5 +28,8 @@ public class Player {
         this.lifePoints = lifePoints;
     }
 
+    public Bag getBag() {
+        return bag;
+    }
 
 }

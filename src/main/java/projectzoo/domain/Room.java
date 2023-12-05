@@ -12,13 +12,13 @@ public class Room {
     private String roomName;
     private final List<Item> availableItems;
     private List<Animal> availableAnimals;
-    private Map<String, String> adjacents;
+    private Map<String, Room> adjacents;
 
     public Room(String roomName) {
         this.roomName = roomName;
         this.availableItems =new ArrayList<>();
         this.availableAnimals = new ArrayList<>();
-        this.adjacents = new HashMap<>();
+        this.adjacents = new HashMap<String, Room>();
     }
 
     public void addItem(Item item) {
@@ -33,9 +33,10 @@ public class Room {
         availableAnimals.add(animal);
     }
 
-    public void addAdjacents(String direction, String adjacentRoom){
-        adjacents.put (direction,adjacentRoom);
+    public void addAdjacents(String direction, Room currentRoom){
+        adjacents.put (direction,currentRoom);
     }
+
 
     public void getAdjacents(String direction){
         adjacents.get(direction);
@@ -74,11 +75,11 @@ public class Room {
         this.availableAnimals = availableAnimals;
     }
 
-    public Map<String, String> getAdjacents() {
+    public Map<String, Room> getAdjacents() {
         return adjacents;
     }
 
-    public void setAdjacents(Map<String, String> adjacents) {
+    public void setAdjacents(Map<String, Room> adjacents) {
         this.adjacents = adjacents;
     }
 }

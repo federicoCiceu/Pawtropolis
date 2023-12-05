@@ -16,35 +16,47 @@ public class Bag {
         this.availableSlot = availableSlot;
     }
 
+    public int bagUsedSlots() {
+        int size = 0;
+        for (Item item : itemMap) {
+            size = item.getSlotRequired() + size;
+        }
+        return size;
+    }
+
+
     public void viewBag() {
         for (Item item : itemMap) {
-            System.out.println("- " + item.getNameItem());
+            System.out.println("- " + item.getNameItem()+" description: " + item.getDescription());
         }
     }
 
-/*
-    public void addItem(Item item) {
-        if (item != null) {
-            int requiredSlots = item.getSlotRequired();
-
-            if (requiredSlots <= availableSlot) {
-                itemMap.put(item.getNameItem(), item);
-                availableSlot -= requiredSlots;
-                System.out.println(item.getNameItem() + " aggiunto alla borsa. Slot disponibili rimanenti: " + availableSlot);
-            } else {
-                System.out.println("Impossibile aggiungere " + item.getNameItem() + " alla borsa. Slot insufficienti.");
-            }
+    public void addItem(String itemName) {
+        String defaultDescription = "Default Description";
+        int defaultSlotRequired = 1;
+        Item item = new Item(itemName, defaultDescription, defaultSlotRequired);
+        if (itemMap.size() < availableSlot) {
+            itemMap.add(item);
+            System.out.println(item.getNameItem() + " added to the bag.");
+        } else {
+            System.out.println("The bag is full. Cannot add " + item.getNameItem() + ".");
         }
-    }*/
-
-    public void addItem(String itemName, String description, int slotRequired) {
-        Item item = new Item(itemName, description, slotRequired);
-        itemMap.add(item);
-        System.out.println(item.getNameItem() + " added to the bag.");
     }
+
 
     public void dropItem(String itemName) {
-            itemMap.remove(itemName);
+        boolean itemFound = false;
+        for (Item item : itemMap) {
+            if (item.getNameItem().equals(itemName)) {
+                itemFound = true;
+                itemMap.remove(item);
+                System.out.println("Item '" + itemName + "has been removed");
+                break;
+            }
+        }
+        if (!itemFound) {
+            System.out.println("Item '" + itemName + "' not found in the bag.");
+        }
     }
 
     public List<Item> getItemMap() {
