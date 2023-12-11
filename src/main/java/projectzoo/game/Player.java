@@ -16,7 +16,6 @@ public class Player {
         this.currentRoom = startingRoom;
     }
 
-
     public Bag getBag() {
         return bag;
     }

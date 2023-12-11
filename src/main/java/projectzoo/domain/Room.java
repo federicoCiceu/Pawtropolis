@@ -36,11 +36,9 @@ public class Room {
         adjacents.put (direction,currentRoom);
     }
 
-
     public String getRoomName() {
         return roomName;
     }
-
 
     public Map<String, Room> getAdjacents() {
         return adjacents;
@@ -71,10 +69,6 @@ public class Room {
             }
         }
         return null;
-    }
-
-    public void dropItem(String itemName) {
-        availableItems.remove(itemName);
     }
 
     public void setRoomName(String roomName) {

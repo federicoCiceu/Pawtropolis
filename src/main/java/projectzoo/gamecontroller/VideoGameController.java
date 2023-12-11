@@ -1,6 +1,5 @@
 package projectzoo.gamecontroller;
 
-
 import projectzoo.animals.Eagle;
 import projectzoo.animals.Lion;
 import projectzoo.animals.Tiger;
@@ -35,10 +34,10 @@ public class VideoGameController {
     }
 
     // Create Items
-    Item item1 = new Item("tail", "wags", 8);
-    Item item2 = new Item("front paws", " Pair them up with the rear paws to get a smile from a dog", 10);
-    Item item3 = new Item("rear paws", "Pair them up with the front paws to get a smile from a dog", 10);
-    Item item4 = new Item("snout", "sniffs objects", 3);
+    Item item1 = new Item("sword", "A Sword user’s Normal Attack is typically a chain of “rapid strikes”", 8);
+    Item item2 = new Item("bow", "A Bow user’s Normal Attack launches a chain of fast, mid-ranged shots", 10);
+    Item item3 = new Item("polearm", "A Polearm user’s Normal Attack performs a few rapid, consecutive spear strikes", 10);
+    Item item4 = new Item("catalyst", "A Catalyst user applies element to enemies when they are hit with Normal Attack", 3);
 
     // Create Animals
     Lion lion1 = new Lion("Nala", "Ribs", 4, LocalDate.of(2019, 1, 23), 2.0, 1.28, 40);
@@ -58,7 +57,7 @@ public class VideoGameController {
 
         String playerInput;
 
-        // Connect Rooms
+        // Connect Rooms (direction - roomName)
         roomHell.addAdjacents(NORTH, roomParadise);
         roomParadise.addAdjacents(SOUTH, roomHell);
         roomParadise.addAdjacents(EAST, roomEarth);
@@ -73,26 +72,30 @@ public class VideoGameController {
         roomEarth.addItem(item3);
         player.getBag().addItem(item4);
 
+
         // Add NPCs to Rooms
         roomHell.addAnimal(lion1);
-        roomHell.addAnimal(lion2);
-        roomParadise.addAnimal(tiger1);
+        roomHell.addAnimal(tiger1);
+        roomParadise.addAnimal(lion2);
         roomParadise.addAnimal(tiger2);
-        roomLimbo.addAnimal(eagle1);
+        roomLimbo.addAnimal(lion3);
         roomLimbo.addAnimal(eagle3);
+        roomEarth.addAnimal(eagle2);
+        roomEarth.addAnimal(tiger3);
 
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome!");
-        System.out.println("What do want to do next ? ");
+
+        System.out.println("Welcome to Pawtropolis!");
+        System.out.println("What do want to do next? ");
         System.out.println("Type go to change the room");
         System.out.println("Type look to see what's inside the room ");
         System.out.println("Type bag to view  what's inside the bag");
-        System.out.println("Type Exit to end the game");
+        System.out.println("Type Exit to end your journey");
         System.out.print(" -> ");
 
         do {
-            playerInput = scanner.nextLine();
+            playerInput = scanner.next().toLowerCase();
 
             switch (playerInput) {
                 case "go":
@@ -111,7 +114,7 @@ public class VideoGameController {
                     dropItem();
                     break;
                 case "exit":
-                    System.out.println("You're out of the game");
+                    System.out.println("Pawtropolis hopes to see you again!");
                     break;
                 default:
                     System.out.println("Invalid Input, try again");
@@ -154,5 +157,6 @@ public class VideoGameController {
         String itemName = scanner.nextLine();
         player.dropItem(itemName);
     }
+
 
 }

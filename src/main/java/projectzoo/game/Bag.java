@@ -23,8 +23,12 @@ public class Bag {
     }
 
     public void viewBag() {
-        for (Item item : itemList) {
+        if (bagUsedSlots() != 0){
+            for (Item item : itemList) {
             System.out.println(" " + item.getNameItem()+" description: " + item.getDescription());
+        }
+        }else {
+            System.out.println("No items found in he bag");
         }
     }
 
@@ -36,7 +40,6 @@ public class Bag {
             System.out.println("The bag is full. Cannot add " + item.getNameItem() + ".");
         }
     }
-
 
 
     public void dropItem(String itemName) {
@@ -61,7 +64,6 @@ public class Bag {
     public int getAvailableSlot() {
         return availableSlot;
     }
-
 
     public void setAvailableSlot(int availableSlot) {
         this.availableSlot = availableSlot;
