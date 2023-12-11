@@ -18,10 +18,11 @@ public class VideoGameController {
     private static final String EAST = "east";
     private final Scanner scanner;
 
-    public static Room roomHell = new Room("Hell");
-    public  Room roomParadise = new Room("Paradise");
-    public  Room roomEarth = new Room("Limbo");
-    public  Room roomLimbo = new Room("Earth");
+    public static Room roomMonstadt = new Room("Monstadt");
+    public  Room roomLiyue = new Room("Liyue");
+    public  Room roomInazuma = new Room("Inazuma");
+    public  Room roomSumeru = new Room("Sumeru");
+    public  Room roomFontaine = new Room("Fontaine");
 
     public VideoGameController(Player player, Scanner scanner) {
         this.player = player;
@@ -35,43 +36,49 @@ public class VideoGameController {
     Item item4 = new Item("catalyst", "A Catalyst user applies element to enemies when they are hit with Normal Attack", 3);
 
     // Create Animals
-    Lion lion1 = new Lion("Nala", "Ribs", 4, LocalDate.of(2019, 1, 23), 2.0, 1.28, 40);
-    Lion lion2 = new Lion("Leo", "Chicken", 8, LocalDate.of(2015, 4, 10), 1.09, 1.17, 36);
-    Lion lion3 = new Lion("Rin", "Pork", 10, LocalDate.of(2013, 12, 5), 2.80, 1.20, 55);
+    Lion lion1 = new Lion("Venti", "Ribs", 4, LocalDate.of(2019, 1, 23), 2.0, 1.28, 40);
+    Lion lion2 = new Lion("Zhongli", "Chicken", 8, LocalDate.of(2015, 4, 10), 1.09, 1.17, 36);
+    Lion lion3 = new Lion("Raiden", "Pork", 10, LocalDate.of(2013, 12, 5), 2.80, 1.20, 55);
 
-    Tiger tiger1 = new Tiger("Baghera", "Meat", 3, LocalDate.of(2020, 8, 20), 2.50, 0.80, 39);
-    Tiger tiger2 = new Tiger("Max", "Ribs", 14, LocalDate.of(2009, 11, 30), 1.88, 1.10, 47);
-    Tiger tiger3 = new Tiger("Kai", "Pork", 8, LocalDate.of(2015, 3, 24), 1.50, 1.80, 34);
+    Tiger tiger1 = new Tiger("Nahida", "Meat", 3, LocalDate.of(2020, 8, 20), 2.50, 0.80, 39);
+    Tiger tiger2 = new Tiger("Furina", "Ribs", 14, LocalDate.of(2009, 11, 30), 1.88, 1.10, 47);
+    Tiger tiger3 = new Tiger("Neuvilette", "Pork", 8, LocalDate.of(2015, 3, 24), 1.50, 1.80, 34);
 
-    Eagle eagle1 = new Eagle("Neon", "Rabbit", 30, LocalDate.of(1993, 10, 18), 3.40, 0.69, 23);
-    Eagle eagle2 = new Eagle("Bubi", "Chicken", 30, LocalDate.of(1993, 5, 1), 2.48, 0.90, 33);
-    Eagle eagle3 = new Eagle("Mina", "Mouse", 1, LocalDate.of(2023, 6, 28), 1.98, 0.45, 13);
+    Eagle eagle1 = new Eagle("Xiao", "Rabbit", 30, LocalDate.of(1993, 10, 18), 3.40, 0.69, 23);
+    Eagle eagle2 = new Eagle("Dvalin", "Chicken", 30, LocalDate.of(1993, 5, 1), 2.48, 0.90, 33);
+    Eagle eagle3 = new Eagle("Ayaka", "Mouse", 1, LocalDate.of(2023, 6, 28), 1.98, 0.45, 13);
 
     public void startGame() {
 
         String playerInput;
 
         // Connect Rooms (direction - roomName)
-        roomHell.addAdjacents(NORTH, roomParadise);
-        roomParadise.addAdjacents(SOUTH, roomHell);
-        roomParadise.addAdjacents(EAST, roomEarth);
-        roomEarth.addAdjacents(WEST, roomParadise);
-        roomEarth.addAdjacents(EAST, roomLimbo);
-        roomLimbo.addAdjacents(WEST, roomEarth);
+        roomMonstadt.addAdjacents(WEST, roomLiyue);
+        roomLiyue.addAdjacents(EAST, roomMonstadt);
+        roomLiyue.addAdjacents(SOUTH, roomInazuma);
+        roomInazuma.addAdjacents(NORTH, roomLiyue);
+        roomLiyue.addAdjacents(WEST, roomSumeru);
+        roomSumeru.addAdjacents(NORTH, roomFontaine);
+        roomSumeru.addAdjacents(EAST, roomLiyue);
+        roomFontaine.addAdjacents(SOUTH, roomSumeru);
 
         // Add Items to Rooms/Bag
-        roomHell.addItem(item1);
-        roomParadise.addItem(item2);
-        roomEarth.addItem(item3);
+        roomMonstadt.addItem(item1);
+        roomLiyue.addItem(item2);
+        roomInazuma.addItem(item3);
+        roomFontaine.addItem(item3);
         player.getBag().addItem(item4);
 
         // Add NPCs to Rooms
-        roomParadise.addAnimal(lion2);
-        roomParadise.addAnimal(tiger2);
-        roomLimbo.addAnimal(lion3);
-        roomLimbo.addAnimal(eagle3);
-        roomEarth.addAnimal(eagle2);
-        roomEarth.addAnimal(tiger3);
+        roomMonstadt.addAnimal(lion1);
+        roomMonstadt.addAnimal(eagle2);
+        roomLiyue.addAnimal(lion2);
+        roomLiyue.addAnimal(eagle1);
+        roomInazuma.addAnimal(lion3);
+        roomInazuma.addAnimal(eagle3);
+        roomSumeru.addAnimal(tiger1);
+        roomFontaine.addAnimal(tiger2);
+        roomFontaine.addAnimal(tiger3);
 
         Scanner scanner = new Scanner(System.in);
 

@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        Room currentRoom = VideoGameController.roomHell;
+        Room currentRoom = VideoGameController.roomMonstadt;
         Player player = new Player("Alex", 100, currentRoom);
 
         VideoGameController videoGameController = new VideoGameController(player, scanner);
