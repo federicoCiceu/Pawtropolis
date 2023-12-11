@@ -32,8 +32,8 @@ public class Room {
         availableAnimals.add(animal);
     }
 
-    public void addAdjacents(String direction, Room currentRoom){
-        adjacents.put (direction,currentRoom);
+    public void addAdjacents(String direction, Room currentRoom) {
+        adjacents.put(direction, currentRoom);
     }
 
     public String getRoomName() {
@@ -45,51 +45,59 @@ public class Room {
     }
 
 
-    public void lookRoom(){
+    public void lookRoom() {
         System.out.println("You're in the room: " + roomName);
         System.out.println("Available directions: " + String.join(", ", adjacents.keySet()));
-        System.out.println("Available items");
-        for (Item item : availableItems){
-            System.out.println("- " + item.getNameItem() + ": " +  item.getDescription());
-        }
-        System.out.println("NPC: ");
-        for (Animal animal : availableAnimals){
-            System.out.println("- " + animal.getNickname() + "(" + animal.getClass().getSimpleName() +")");
-        }
-    }
 
-    public void dropItem(Item item) {
-        availableItems.remove(item);
-    }
-
-    public Item findItem(String itemName) {
-        for (Item item : availableItems) {
-            if (item.getNameItem().equalsIgnoreCase(itemName)) {
-                return item;
+        if (!availableItems.isEmpty()) {
+            System.out.println("Available items");
+            for (Item item : availableItems) {
+                System.out.println("- " + item.getNameItem() + ": " + item.getDescription());
+            }} else {
+            System.out.println("There are no items in this room");
+        }
+        if (!availableAnimals.isEmpty()) {
+            System.out.println("NPC: ");
+            for (Animal animal : availableAnimals) {
+                System.out.println("- " + animal.getNickname() + "(" + animal.getClass().getSimpleName() + ")");
+            }}else {
+                System.out.println("There are no NPCs in this room");
             }
         }
-        return null;
-    }
 
-    public void setRoomName(String roomName) {
-        this.roomName = roomName;
-    }
+        public void dropItem (Item item){
+            availableItems.remove(item);
+        }
 
-    public void getAdjacents(String direction){
-        adjacents.get(direction);
-    }
+        public Item findItem (String itemName){
+            for (Item item : availableItems) {
+                if (item.getNameItem().equalsIgnoreCase(itemName)) {
+                    return item;
+                }
+            }
+            return null;
+        }
 
-    public List<Item> getAvailableItems() {
-        return availableItems;
-    }
+        public void setRoomName (String roomName){
+            this.roomName = roomName;
+        }
 
-    public List<Animal> getAvailableAnimals() {
-        return availableAnimals;
-    }
+        public void getAdjacents (String direction){
+            adjacents.get(direction);
+        }
 
-    public void setAvailableAnimals(List<Animal> availableAnimals) {
-        this.availableAnimals = availableAnimals;
-    }
+        public List<Item> getAvailableItems () {
+            return availableItems;
+        }
+
+        public List<Animal> getAvailableAnimals () {
+            return availableAnimals;
+        }
+
+        public void setAvailableAnimals (List < Animal > availableAnimals) {
+            this.availableAnimals = availableAnimals;
+        }
+
 
 
 }

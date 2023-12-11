@@ -18,12 +18,10 @@ public class VideoGameController {
     private static final String EAST = "east";
     private final Scanner scanner;
 
-
     public static Room roomHell = new Room("Hell");
     public  Room roomParadise = new Room("Paradise");
     public  Room roomEarth = new Room("Limbo");
     public  Room roomLimbo = new Room("Earth");
-
 
     public VideoGameController(Player player, Scanner scanner) {
         this.player = player;
@@ -49,7 +47,6 @@ public class VideoGameController {
     Eagle eagle2 = new Eagle("Bubi", "Chicken", 30, LocalDate.of(1993, 5, 1), 2.48, 0.90, 33);
     Eagle eagle3 = new Eagle("Mina", "Mouse", 1, LocalDate.of(2023, 6, 28), 1.98, 0.45, 13);
 
-
     public void startGame() {
 
         String playerInput;
@@ -62,24 +59,19 @@ public class VideoGameController {
         roomEarth.addAdjacents(EAST, roomLimbo);
         roomLimbo.addAdjacents(WEST, roomEarth);
 
-
         // Add Items to Rooms/Bag
         roomHell.addItem(item1);
         roomParadise.addItem(item2);
         roomEarth.addItem(item3);
         player.getBag().addItem(item4);
 
-
         // Add NPCs to Rooms
-        roomHell.addAnimal(lion1);
-        roomHell.addAnimal(tiger1);
         roomParadise.addAnimal(lion2);
         roomParadise.addAnimal(tiger2);
         roomLimbo.addAnimal(lion3);
         roomLimbo.addAnimal(eagle3);
         roomEarth.addAnimal(eagle2);
         roomEarth.addAnimal(tiger3);
-
 
         Scanner scanner = new Scanner(System.in);
 
@@ -92,11 +84,16 @@ public class VideoGameController {
         System.out.print(" -> ");
 
         do {
-            playerInput = scanner.next().toLowerCase();
+            playerInput = scanner.nextLine().toLowerCase().trim();
+            String[] inputParts = playerInput.split(" ", 2);
 
-            switch (playerInput) {
+            switch (inputParts[0]) {
                 case "go":
-                    goRoom();
+                    if (inputParts.length == 2) {
+                        goRoom(inputParts[1]);
+                    } else {
+                        System.out.println("Please specify a direction.");
+                    }
                     break;
                 case "look":
                     lookRoom();
@@ -105,10 +102,18 @@ public class VideoGameController {
                     viewBag();
                     break;
                 case "get":
-                    getItem();
+                    if (inputParts.length == 2) {
+                        getItem(inputParts[1]);
+                    } else {
+                        System.out.println("Please choose the item to obtain.");
+                    }
                     break;
                 case "drop":
-                    dropItem();
+                    if (inputParts.length == 2) {
+                        dropItem(inputParts[1]);
+                    } else {
+                        System.out.println("Please choose the item to drop.");
+                    }
                     break;
                 case "exit":
                     System.out.println("Pawtropolis hopes to see you again!");
@@ -119,16 +124,11 @@ public class VideoGameController {
         } while (!playerInput.equalsIgnoreCase("EXIT" ));
     }
 
-
-    private void goRoom() {
-        System.out.println("Available directions: " + String.join(", ", player.getCurrentRoom().getAdjacents().keySet()));
-        System.out.print("Choose a direction: ");
-        String directionInput = scanner.nextLine().toLowerCase();
-
-        if (player.getCurrentRoom().getAdjacents().containsKey(directionInput)) {
-            Room nextRoom = player.getCurrentRoom().getAdjacents().get(directionInput);
+    private void goRoom(String inputPart) {
+        if (player.getCurrentRoom().getAdjacents().containsKey(inputPart)) {
+            Room nextRoom = player.getCurrentRoom().getAdjacents().get(inputPart);
             player.setCurrentRoom(nextRoom);
-            System.out.println("You have entered  " + nextRoom.getRoomName());
+            System.out.println("You have entered " + nextRoom.getRoomName());
             player.getCurrentRoom().lookRoom();
         } else {
             System.out.println("Invalid direction. Try again.");
@@ -143,17 +143,12 @@ public class VideoGameController {
        player.getBag().viewBag();
     }
 
-    private void getItem() {
-        System.out.print("Enter the item name to pick it up: ");
-        String itemName = scanner.nextLine();
-        player.pickItem(itemName);
+    private void getItem(String inputPart) {
+        player.pickItem(inputPart);
     }
 
-    private void dropItem() {
-        System.out.print("Enter the item name to drop it: ");
-        String itemName = scanner.nextLine();
-        player.dropItem(itemName);
+    private void dropItem(String inputPart) {
+        player.dropItem(inputPart);
     }
-
 
 }

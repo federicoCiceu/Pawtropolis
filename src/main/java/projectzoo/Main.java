@@ -1,7 +1,6 @@
 package projectzoo;
 
 import projectzoo.domain.Room;
-import projectzoo.game.Bag;
 import projectzoo.game.Player;
 import projectzoo.gamecontroller.VideoGameController;
 

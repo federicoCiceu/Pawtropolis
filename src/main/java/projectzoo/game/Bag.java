@@ -35,7 +35,6 @@ public class Bag {
     public void addItem(Item item) {
         if (itemList.size() < availableSlot) {
             itemList.add(item);
-            System.out.println(item.getNameItem() + " added to the bag.");
         } else {
             System.out.println("The bag is full. Cannot add " + item.getNameItem() + ".");
         }
@@ -56,7 +55,6 @@ public class Bag {
             if (item.getNameItem().equals(itemName)) {
                 itemFound = true;
                 itemList.remove(item);
-                System.out.println("Item '" + itemName + "has been removed");
                 break;
             }
         }

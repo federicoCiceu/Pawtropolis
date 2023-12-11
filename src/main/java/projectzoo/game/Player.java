@@ -35,7 +35,6 @@ public class Player {
             if (bag.bagUsedSlots() + item.getSlotRequired() <= bag.getAvailableSlot()) {
                 bag.addItem(item);
                 currentRoom.dropItem(item);
-                System.out.println(itemName + " picked up.");
             } else {
                 System.out.println("Not enough space in the bag.");
             }
@@ -49,7 +48,6 @@ public class Player {
         if (item != null) {
             bag.dropItem(itemName);
             currentRoom.addItem(item);
-            System.out.println(itemName + " dropped.");
         } else {
             System.out.println("Item not found in the bag.");
         }
