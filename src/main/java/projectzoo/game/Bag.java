@@ -41,6 +41,14 @@ public class Bag {
         }
     }
 
+    public Item findItem(String itemName) {
+        for (Item item : itemList) {
+            if (item.getNameItem().equalsIgnoreCase(itemName)) {
+                return item;
+            }
+        }
+        return null;
+    }
 
     public void dropItem(String itemName) {
         boolean itemFound = false;

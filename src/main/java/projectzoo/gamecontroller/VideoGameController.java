@@ -128,7 +128,7 @@ public class VideoGameController {
         if (player.getCurrentRoom().getAdjacents().containsKey(directionInput)) {
             Room nextRoom = player.getCurrentRoom().getAdjacents().get(directionInput);
             player.setCurrentRoom(nextRoom);
-            System.out.println("You have enter  " + nextRoom.getRoomName());
+            System.out.println("You have entered  " + nextRoom.getRoomName());
             player.getCurrentRoom().lookRoom();
         } else {
             System.out.println("Invalid direction. Try again.");
