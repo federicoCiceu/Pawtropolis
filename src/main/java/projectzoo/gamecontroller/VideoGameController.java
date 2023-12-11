@@ -4,7 +4,6 @@ import projectzoo.animals.Eagle;
 import projectzoo.animals.Lion;
 import projectzoo.animals.Tiger;
 import projectzoo.domain.Room;
-import projectzoo.game.Bag;
 import projectzoo.game.Item;
 import projectzoo.game.Player;
 
@@ -19,17 +18,15 @@ public class VideoGameController {
     private static final String EAST = "east";
     private final Scanner scanner;
 
-    public static  Bag bag = new Bag(30);
+
     public static Room roomHell = new Room("Hell");
     public  Room roomParadise = new Room("Paradise");
     public  Room roomEarth = new Room("Limbo");
     public  Room roomLimbo = new Room("Earth");
 
 
-    public VideoGameController(Player player, Room roomHell, Bag bag, Scanner scanner) {
+    public VideoGameController(Player player, Scanner scanner) {
         this.player = player;
-        this.roomHell = roomHell;
-        this.bag = bag;
         this.scanner = scanner;
     }
 
@@ -119,7 +116,7 @@ public class VideoGameController {
                 default:
                     System.out.println("Invalid Input, try again");
             }
-        } while (!playerInput.equalsIgnoreCase("exit"));
+        } while (!playerInput.equalsIgnoreCase("EXIT" ));
     }
 
 
@@ -131,7 +128,7 @@ public class VideoGameController {
         if (player.getCurrentRoom().getAdjacents().containsKey(directionInput)) {
             Room nextRoom = player.getCurrentRoom().getAdjacents().get(directionInput);
             player.setCurrentRoom(nextRoom);
-            System.out.println("You have moved to the " + nextRoom.getRoomName());
+            System.out.println("You have enter  " + nextRoom.getRoomName());
             player.getCurrentRoom().lookRoom();
         } else {
             System.out.println("Invalid direction. Try again.");
@@ -147,13 +144,13 @@ public class VideoGameController {
     }
 
     private void getItem() {
-        System.out.print("Enter the item name to pick up: ");
+        System.out.print("Enter the item name to pick it up: ");
         String itemName = scanner.nextLine();
         player.pickItem(itemName);
     }
 
     private void dropItem() {
-        System.out.print("Enter the item name to drop: ");
+        System.out.print("Enter the item name to drop it: ");
         String itemName = scanner.nextLine();
         player.dropItem(itemName);
     }
