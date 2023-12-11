@@ -12,13 +12,11 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         Room currentRoom = VideoGameController.roomHell;
-        Player player = new Player("Alex", 100, currentRoom);
-        Bag bag1 = new Bag(30);
+        Bag bag = VideoGameController.bag;
+        Player player = new Player("Alex", 100, currentRoom, bag);
 
-        VideoGameController videoGameController = new VideoGameController(player, currentRoom, bag1, scanner);
+        VideoGameController videoGameController = new VideoGameController(player, currentRoom, bag, scanner);
         videoGameController.startGame();
 
     }
-
-
 }

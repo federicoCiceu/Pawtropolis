@@ -9,12 +9,19 @@ public class Player {
     private Bag bag;
     private Room currentRoom; // Add this field
 
-    public Player(String name, int lifePoints, Room startingRoom) {
+    public Player(String name, int lifePoints, Room startingRoom, Bag bag) {
         this.namePlayer = name;
         this.lifePoints = lifePoints;
         this.bag = new Bag(30);
         this.currentRoom = startingRoom; // Set the starting room
     }
+
+    public void viewBag() {
+        for (Item item : bag.getItemList()) {
+            System.out.println("- " + item.getNameItem()+" description: " + item.getDescription());
+        }
+    }
+
 
     public String getName() {
         return namePlayer;
@@ -49,7 +56,7 @@ public class Player {
 
         if (item != null) {
             if (bag.bagUsedSlots() + item.getSlotRequired() <= bag.getAvailableSlot()) {
-                bag.addItem(itemName);
+                bag.addItem(item);
                 currentRoom.dropItem(item);
                 System.out.println(itemName + " picked up.");
             } else {
@@ -60,14 +67,4 @@ public class Player {
         }
     }
 
-    public void dropItem(String itemName) {
-        if (bag.getItemMap().stream().anyMatch(item -> item.getNameItem().equals(itemName))) {
-            Item item = bag.getItemMap().stream().filter(i -> i.getNameItem().equals(itemName)).findFirst().get();
-            bag.dropItem(itemName);
-            currentRoom.addItem(item);
-            System.out.println(itemName + " dropped.");
-        } else {
-            System.out.println("Item not found in the bag.");
-        }
-    }
 }

@@ -18,19 +18,19 @@ public class VideoGameController {
     private final static String SOUTH = "south";
     private final static String WEST = "west";
     private final static String EAST = "east";
-    private final Bag bag1;
+    public static Bag bag = new Bag (30);
     private final Scanner scanner;
 
     public static Room roomHell = new Room("Hell");
-    public Room roomParadise = new Room("Paradise");
-    public Room roomForest = new Room("Forest");
-    public Room roomCave = new Room("Cave");
+    public static Room roomParadise = new Room("Paradise");
+    public static Room roomForest = new Room("Forest");
+    public static Room roomCave = new Room("Cave");
 
 
-    public VideoGameController(Player player, Room roomHell, Bag bag1, Scanner scanner) {
+    public VideoGameController(Player player, Room roomHell, Bag bag, Scanner scanner) {
         this.player = player;
         this.roomHell = roomHell;
-        this.bag1 = bag1;
+        this.bag = bag;
         this.scanner = scanner;
     }
 
@@ -39,7 +39,7 @@ public class VideoGameController {
     Item item1 = new Item("tail", "wags", 8);
     Item item2 = new Item("front paws", " Pair them up with the rear paws to get a smile from a dog", 10);
     Item item3 = new Item("rear paws", "Pair them up with the front paws to get a smile from a dog", 10);
-    Item item4 = new Item("snout", "sniffs objects", 31);
+    Item item4 = new Item("snout", "sniffs objects", 2);
 
 // Create Animals
 
@@ -60,7 +60,6 @@ public class VideoGameController {
     public void startGame() {
 
         String playerInput;
-        Bag initialBag = bag1;
 
 // Connect Rooms
         roomHell.addAdjacents(NORTH, roomParadise);
@@ -75,7 +74,7 @@ public class VideoGameController {
         roomHell.addItem(item1);
         roomParadise.addItem(item2);
         roomForest.addItem(item3);
-        bag1.addItem("snout");
+        bag.addItem(item4);
 
 // Add NPCs to Rooms
         roomHell.addAnimal(lion1);
@@ -144,7 +143,7 @@ public class VideoGameController {
     }
 
     private void viewBag() {
-        player.getBag().viewBag();
+        player.viewBag();
     }
 
     private void getItem() {
