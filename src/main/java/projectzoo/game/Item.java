@@ -16,16 +16,8 @@ public class Item {
         return nameItem;
     }
 
-    public void setNameItem(String nameItem) {
-        this.nameItem = nameItem;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public int getSlotRequired() {
@@ -36,5 +28,11 @@ public class Item {
         this.slotRequired = slotRequired;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
+    public void setNameItem(String nameItem) {
+        this.nameItem = nameItem;
+    }
 }

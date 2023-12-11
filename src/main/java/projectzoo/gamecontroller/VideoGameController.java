@@ -14,35 +14,33 @@ import java.util.*;
 
 public class VideoGameController {
     private final Player player;
-    private final static String NORTH = "north";
-    private final static String SOUTH = "south";
-    private final static String WEST = "west";
-    private final static String EAST = "east";
-    private final Bag bag1;
+    private static final String NORTH = "north";
+    private static final String SOUTH = "south";
+    private static final String WEST = "west";
+    private static final String EAST = "east";
     private final Scanner scanner;
 
+    public static  Bag bag = new Bag(30);
     public static Room roomHell = new Room("Hell");
-    public Room roomParadise = new Room("Paradise");
-    public Room roomForest = new Room("Forest");
-    public Room roomCave = new Room("Cave");
+    public  Room roomParadise = new Room("Paradise");
+    public  Room roomEarth = new Room("Limbo");
+    public  Room roomLimbo = new Room("Earth");
 
 
-    public VideoGameController(Player player, Room roomHell, Bag bag1, Scanner scanner) {
+    public VideoGameController(Player player, Room roomHell, Bag bag, Scanner scanner) {
         this.player = player;
         this.roomHell = roomHell;
-        this.bag1 = bag1;
+        this.bag = bag;
         this.scanner = scanner;
     }
 
-
-// Create Items
+    // Create Items
     Item item1 = new Item("tail", "wags", 8);
     Item item2 = new Item("front paws", " Pair them up with the rear paws to get a smile from a dog", 10);
     Item item3 = new Item("rear paws", "Pair them up with the front paws to get a smile from a dog", 10);
-    Item item4 = new Item("snout", "sniffs objects", 31);
+    Item item4 = new Item("snout", "sniffs objects", 3);
 
-// Create Animals
-
+    // Create Animals
     Lion lion1 = new Lion("Nala", "Ribs", 4, LocalDate.of(2019, 1, 23), 2.0, 1.28, 40);
     Lion lion2 = new Lion("Leo", "Chicken", 8, LocalDate.of(2015, 4, 10), 1.09, 1.17, 36);
     Lion lion3 = new Lion("Rin", "Pork", 10, LocalDate.of(2013, 12, 5), 2.80, 1.20, 55);
@@ -56,34 +54,32 @@ public class VideoGameController {
     Eagle eagle3 = new Eagle("Mina", "Mouse", 1, LocalDate.of(2023, 6, 28), 1.98, 0.45, 13);
 
 
-
     public void startGame() {
 
         String playerInput;
-        Bag initialBag = bag1;
 
-// Connect Rooms
+        // Connect Rooms
         roomHell.addAdjacents(NORTH, roomParadise);
         roomParadise.addAdjacents(SOUTH, roomHell);
-        roomParadise.addAdjacents(EAST, roomForest);
-        roomForest.addAdjacents(WEST, roomParadise);
-        roomForest.addAdjacents(EAST, roomCave);
-        roomCave.addAdjacents(WEST, roomForest);
+        roomParadise.addAdjacents(EAST, roomEarth);
+        roomEarth.addAdjacents(WEST, roomParadise);
+        roomEarth.addAdjacents(EAST, roomLimbo);
+        roomLimbo.addAdjacents(WEST, roomEarth);
 
 
-// Add Items to Rooms
+        // Add Items to Rooms/Bag
         roomHell.addItem(item1);
         roomParadise.addItem(item2);
-        roomForest.addItem(item3);
-        bag1.addItem("snout");
+        roomEarth.addItem(item3);
+        player.getBag().addItem(item4);
 
-// Add NPCs to Rooms
+        // Add NPCs to Rooms
         roomHell.addAnimal(lion1);
         roomHell.addAnimal(lion2);
         roomParadise.addAnimal(tiger1);
         roomParadise.addAnimal(tiger2);
-        roomCave.addAnimal(eagle1);
-        roomCave.addAnimal(eagle3);
+        roomLimbo.addAnimal(eagle1);
+        roomLimbo.addAnimal(eagle3);
 
 
         Scanner scanner = new Scanner(System.in);
@@ -144,7 +140,7 @@ public class VideoGameController {
     }
 
     private void viewBag() {
-        player.getBag().viewBag();
+       player.getBag().viewBag();
     }
 
     private void getItem() {
@@ -158,6 +154,5 @@ public class VideoGameController {
         String itemName = scanner.nextLine();
         player.dropItem(itemName);
     }
-
 
 }

@@ -6,31 +6,16 @@ public class Player {
 
     private String namePlayer;
     private int lifePoints;
-    private Bag bag;
+    private final Bag bag;
     private Room currentRoom; // Add this field
 
     public Player(String name, int lifePoints, Room startingRoom) {
         this.namePlayer = name;
         this.lifePoints = lifePoints;
         this.bag = new Bag(30);
-        this.currentRoom = startingRoom; // Set the starting room
+        this.currentRoom = startingRoom;
     }
 
-    public String getName() {
-        return namePlayer;
-    }
-
-    public void setName(String name) {
-        this.namePlayer = name;
-    }
-
-    public double getLifePoints() {
-        return lifePoints;
-    }
-
-    public void setLifePoints(int lifePoints) {
-        this.lifePoints = lifePoints;
-    }
 
     public Bag getBag() {
         return bag;
@@ -49,7 +34,7 @@ public class Player {
 
         if (item != null) {
             if (bag.bagUsedSlots() + item.getSlotRequired() <= bag.getAvailableSlot()) {
-                bag.addItem(itemName);
+                bag.addItem(item);
                 currentRoom.dropItem(item);
                 System.out.println(itemName + " picked up.");
             } else {
@@ -61,13 +46,37 @@ public class Player {
     }
 
     public void dropItem(String itemName) {
-        if (bag.getItemMap().stream().anyMatch(item -> item.getNameItem().equals(itemName))) {
-            Item item = bag.getItemMap().stream().filter(i -> i.getNameItem().equals(itemName)).findFirst().get();
+        if (bag.getItemList()
+                .stream()
+                .anyMatch(item -> item.getNameItem().equals(itemName))) {
+
+            Item item = bag.getItemList()
+                    .stream()
+                    .filter(i -> i.getNameItem().equals(itemName))
+                    .findFirst()
+                    .get();
+
             bag.dropItem(itemName);
             currentRoom.addItem(item);
             System.out.println(itemName + " dropped.");
         } else {
             System.out.println("Item not found in the bag.");
         }
+    }
+
+    public String getName() {
+        return namePlayer;
+    }
+
+    public void setName(String name) {
+        this.namePlayer = name;
+    }
+
+    public double getLifePoints() {
+        return lifePoints;
+    }
+
+    public void setLifePoints(int lifePoints) {
+        this.lifePoints = lifePoints;
     }
 }
