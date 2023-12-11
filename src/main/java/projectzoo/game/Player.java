@@ -1,15 +1,19 @@
 package projectzoo.game;
 
+import projectzoo.domain.Room;
+
 public class Player {
 
     private String namePlayer;
     private int lifePoints;
     private Bag bag;
+    private Room currentRoom; // Add this field
 
-    public Player(String name, int lifePoints) {
+    public Player(String name, int lifePoints, Room startingRoom) {
         this.namePlayer = name;
         this.lifePoints = lifePoints;
         this.bag = new Bag(30);
+        this.currentRoom = startingRoom; // Set the starting room
     }
 
     public String getName() {
@@ -32,4 +36,38 @@ public class Player {
         return bag;
     }
 
+    public Room getCurrentRoom() {
+        return currentRoom;
+    }
+
+    public void setCurrentRoom(Room room) {
+        this.currentRoom = room;
+    }
+
+    public void pickItem(String itemName) {
+        Item item = currentRoom.findItem(itemName);
+
+        if (item != null) {
+            if (bag.bagUsedSlots() + item.getSlotRequired() <= bag.getAvailableSlot()) {
+                bag.addItem(itemName);
+                currentRoom.dropItem(item);
+                System.out.println(itemName + " picked up.");
+            } else {
+                System.out.println("Not enough space in the bag.");
+            }
+        } else {
+            System.out.println("The item is not present in this room.");
+        }
+    }
+
+    public void dropItem(String itemName) {
+        if (bag.getItemMap().stream().anyMatch(item -> item.getNameItem().equals(itemName))) {
+            Item item = bag.getItemMap().stream().filter(i -> i.getNameItem().equals(itemName)).findFirst().get();
+            bag.dropItem(itemName);
+            currentRoom.addItem(item);
+            System.out.println(itemName + " dropped.");
+        } else {
+            System.out.println("Item not found in the bag.");
+        }
+    }
 }

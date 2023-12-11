@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
+import static javax.swing.SpringLayout.*;
 
 public class Room {
     private String roomName;
@@ -16,9 +19,9 @@ public class Room {
 
     public Room(String roomName) {
         this.roomName = roomName;
-        this.availableItems =new ArrayList<>();
+        this.availableItems = new ArrayList<>();
         this.availableAnimals = new ArrayList<>();
-        this.adjacents = new HashMap<String, Room>();
+        this.adjacents = new HashMap<>();
     }
 
     public void addItem(Item item) {
@@ -42,17 +45,6 @@ public class Room {
         adjacents.get(direction);
     }
 
-    public void lookRoom(){
-    System.out.println("You're in the room: " + roomName);
-        System.out.println("Available items");
-        for (Item item : availableItems){
-            System.out.println("- " + item.getNameItem() + ": " +  item.getDescription());
-        }
-        System.out.println("NPC: ");
-        for (Animal animal : availableAnimals){
-            System.out.println("- " + animal.getNickname() + "(" + animal.getClass().getSimpleName() +")");
-        }
-    }
 
     public String getRoomName() {
         return roomName;
@@ -82,4 +74,68 @@ public class Room {
     public void setAdjacents(Map<String, Room> adjacents) {
         this.adjacents = adjacents;
     }
+
+    public void connectRoom(String direction, Room targetRoom) {
+        adjacents.put(direction, targetRoom);
+        targetRoom.adjacents.put(getOppositeDirection(direction), this);
+    }
+
+    private String getOppositeDirection(String direction) {
+        switch (direction) {
+            case NORTH:
+                return SOUTH;
+            case SOUTH:
+                return NORTH;
+            case EAST:
+                return WEST;
+            case WEST:
+                return EAST;
+            // Handle other directions if needed
+            default:
+                return "";
+        }
+    }
+
+    public void insertItem(Item item) {
+        availableItems.add(item);
+    }
+
+    public void insertAnimal(Animal animal) {
+        availableAnimals.add(animal);
+    }
+
+    public void lookRoom(){
+        System.out.println("You're in the room: " + roomName);
+        System.out.println("Available directions: " + String.join(", ", adjacents.keySet()));
+        System.out.println("Available items");
+        for (Item item : availableItems){
+            System.out.println("- " + item.getNameItem() + ": " +  item.getDescription());
+        }
+        System.out.println("NPC: ");
+        for (Animal animal : availableAnimals){
+            System.out.println("- " + animal.getNickname() + "(" + animal.getClass().getSimpleName() +")");
+        }
+    }
+
+    private String getItemsAsString() {
+        return availableItems.isEmpty() ? "None" : availableItems.stream().map(Item::getNameItem).collect(Collectors.joining(", "));
+    }
+
+    private String getAnimalsAsString() {
+        return availableAnimals.isEmpty() ? "None" : availableAnimals.stream().map(animal -> animal.getNickname() + " (" + animal.getClass().getSimpleName() + ")").collect(Collectors.joining(", "));
+    }
+
+    public void dropItem(Item item) {
+        availableItems.remove(item);
+    }
+
+    public Item findItem(String itemName) {
+        for (Item item : availableItems) {
+            if (item.getNameItem().equalsIgnoreCase(itemName)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
 }
