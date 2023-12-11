@@ -4,7 +4,12 @@ public class Player {
 
     private String namePlayer;
     private int lifePoints;
+<<<<<<< Updated upstream
     private Bag bag;
+=======
+    private final Bag bag;
+    private Room currentRoom;
+>>>>>>> Stashed changes
 
     public Player(String name, int lifePoints) {
         this.namePlayer = name;
