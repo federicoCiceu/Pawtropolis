@@ -9,12 +9,10 @@ public class Main {
     public static void main(String[] args) {
 
         Player player = new Player("Alex", 100);
-        Room room1 = new Room("Hell");
-        Room room2 = new Room("Paradise");
-        Room room3 = new Room("Limbo");
+        Room entry = new Room("Hell");        //da spostare nel controller
         Bag bag1 = new Bag(30);
 
-        VideoGameController videoGameController = new VideoGameController(player, room1, room2, room3, bag1);
+        VideoGameController videoGameController = new VideoGameController(player, entry ,bag1);
         videoGameController.startGame();
 
     }
