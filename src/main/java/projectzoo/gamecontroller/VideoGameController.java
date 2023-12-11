@@ -67,7 +67,6 @@ public class VideoGameController {
 
         //currentRoom.addAdjacents("nord",currentRoom2);
 
-
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome!");
         entry.lookRoom();
@@ -117,4 +116,45 @@ public class VideoGameController {
 
     }
 
+<<<<<<< Updated upstream
+=======
+
+    private void goRoom() {
+        System.out.println("Available directions: " + String.join(", ", player.getCurrentRoom().getAdjacents().keySet()));
+        System.out.print("Choose a direction: ");
+
+        String directionInput = scanner.nextLine().toLowerCase();
+
+        if (player.getCurrentRoom().getAdjacents().containsKey(directionInput)) {
+            Room nextRoom = player.getCurrentRoom().getAdjacents().get(directionInput);
+            player.setCurrentRoom(nextRoom);
+            System.out.println("You have entered  " + nextRoom.getRoomName());
+            player.getCurrentRoom().lookRoom();
+        } else {
+            System.out.println("Invalid direction. Try again.");
+        }
+    }
+
+    private void lookRoom() {
+        player.getCurrentRoom().lookRoom();
+    }
+
+    private void viewBag() {
+       player.getBag().viewBag();
+    }
+
+    private void getItem() {
+        System.out.print("Enter the item name to pick it up: ");
+        String itemName = scanner.nextLine();
+        player.pickItem(itemName);
+    }
+
+    private void dropItem() {
+        System.out.print("Enter the item name to drop it: ");
+        String itemName = scanner.nextLine();
+        player.dropItem(itemName);
+    }
+
+
+>>>>>>> Stashed changes
 }
