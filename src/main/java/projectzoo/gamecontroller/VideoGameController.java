@@ -16,7 +16,6 @@ public class VideoGameController {
     private static final String SOUTH = "south";
     private static final String WEST = "west";
     private static final String EAST = "east";
-    private final Scanner scanner;
 
     public static Room roomMonstadt = new Room("Monstadt");
     public  Room roomLiyue = new Room("Liyue");
@@ -24,9 +23,8 @@ public class VideoGameController {
     public  Room roomSumeru = new Room("Sumeru");
     public  Room roomFontaine = new Room("Fontaine");
 
-    public VideoGameController(Player player, Scanner scanner) {
+    public VideoGameController(Player player) {
         this.player = player;
-        this.scanner = scanner;
     }
 
     // Create Items
@@ -157,5 +155,4 @@ public class VideoGameController {
     private void dropItem(String inputPart) {
         player.dropItem(inputPart);
     }
-
 }
