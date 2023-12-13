@@ -4,7 +4,6 @@ import projectzoo.domain.Room;
 import projectzoo.game.Player;
 import projectzoo.gamecontroller.VideoGameController;
 
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {

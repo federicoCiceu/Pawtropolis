@@ -46,6 +46,7 @@ public class VideoGameController {
     Eagle eagle2 = new Eagle("Dvalin", "Chicken", 30, LocalDate.of(1993, 5, 1), 2.48, 0.90, 33);
     Eagle eagle3 = new Eagle("Ayaka", "Mouse", 1, LocalDate.of(2023, 6, 28), 1.98, 0.45, 13);
 
+
     public void startGame() {
 
         String playerInput;
