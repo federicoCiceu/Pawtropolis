@@ -25,7 +25,7 @@ public class Bag {
     public void viewBag() {
         if (bagUsedSlots() != 0){
             for (Item item : itemList) {
-            System.out.println(" " + item.getNameItem()+" description: " + item.getDescription());
+            System.out.println(" " + item.getName()+" description: " + item.getDescription());
         }
         }else {
             System.out.println("No items found in he bag");
@@ -36,13 +36,13 @@ public class Bag {
         if (itemList.size() < availableSlot) {
             itemList.add(item);
         } else {
-            System.out.println("The bag is full. Cannot add " + item.getNameItem() + ".");
+            System.out.println("The bag is full. Cannot add " + item.getName() + ".");
         }
     }
 
     public Item findItem(String itemName) {
         for (Item item : itemList) {
-            if (item.getNameItem().equalsIgnoreCase(itemName)) {
+            if (item.getName().equalsIgnoreCase(itemName)) {
                 return item;
             }
         }
@@ -52,7 +52,7 @@ public class Bag {
     public void dropItem(String itemName) {
         boolean itemFound = false;
         for (Item item : itemList) {
-            if (item.getNameItem().equals(itemName)) {
+            if (item.getName().equals(itemName)) {
                 itemFound = true;
                 itemList.remove(item);
                 break;
@@ -62,13 +62,11 @@ public class Bag {
             System.out.println("Item '" + itemName + "' not found in the bag.");
         }
     }
-
-    public List<Item> getItemList() {
-        return itemList;
-    }
-
     public int getAvailableSlot() {
         return availableSlot;
+    }
+    public List<Item> getItemList() {
+        return itemList;
     }
 
     public void setAvailableSlot(int availableSlot) {

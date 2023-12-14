@@ -27,6 +27,7 @@ public class VideoGameController {
         this.player = player;
     }
 
+
     // Create Items
     Item item1 = new Item("sword", "A Sword user’s Normal Attack is typically a chain of “rapid strikes”", 8);
     Item item2 = new Item("bow", "A Bow user’s Normal Attack launches a chain of fast, mid-ranged shots", 10);
@@ -134,7 +135,7 @@ public class VideoGameController {
         if (player.getCurrentRoom().getAdjacents().containsKey(inputPart)) {
             Room nextRoom = player.getCurrentRoom().getAdjacents().get(inputPart);
             player.setCurrentRoom(nextRoom);
-            System.out.println("You have entered " + nextRoom.getRoomName());
+            System.out.println("You have entered " + nextRoom.getName());
             player.getCurrentRoom().lookRoom();
         } else {
             System.out.println("Invalid direction. Try again.");

@@ -4,13 +4,13 @@ import projectzoo.domain.Room;
 
 public class Player {
 
-    private String namePlayer;
+    private String name;
     private int lifePoints;
     private final Bag bag;
     private Room currentRoom;
 
     public Player(String name, int lifePoints, Room startingRoom) {
-        this.namePlayer = name;
+        this.name = name;
         this.lifePoints = lifePoints;
         this.bag = new Bag(30);
         this.currentRoom = startingRoom;
@@ -53,13 +53,12 @@ public class Player {
         }
     }
 
-
     public String getName() {
-        return namePlayer;
+        return name;
     }
 
     public void setName(String name) {
-        this.namePlayer = name;
+        this.name = name;
     }
 
     public double getLifePoints() {
@@ -69,6 +68,7 @@ public class Player {
     public void setLifePoints(int lifePoints) {
         this.lifePoints = lifePoints;
     }
+
 }
 
 

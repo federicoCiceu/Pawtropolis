@@ -10,13 +10,13 @@ import java.util.Map;
 
 
 public class Room {
-    private String roomName;
+    private String name;
     private final List<Item> availableItems;
     private List<Animal> availableAnimals;
     private final Map<String, Room> adjacents;
 
     public Room(String roomName) {
-        this.roomName = roomName;
+        this.name = roomName;
         this.availableItems = new ArrayList<>();
         this.availableAnimals = new ArrayList<>();
         this.adjacents = new HashMap<>();
@@ -34,8 +34,8 @@ public class Room {
         adjacents.put(direction, currentRoom);
     }
 
-    public String getRoomName() {
-        return roomName;
+    public String getName() {
+        return name;
     }
 
     public Map<String, Room> getAdjacents() {
@@ -44,13 +44,13 @@ public class Room {
 
 
     public void lookRoom() {
-        System.out.println("You're in the room: " + roomName);
+        System.out.println("You're in the room: " + name);
         System.out.println("Available directions: " + String.join(", ", adjacents.keySet()));
 
         if (!availableItems.isEmpty()) {
             System.out.println("Available items");
             for (Item item : availableItems) {
-                System.out.println("- " + item.getNameItem() + ": " + item.getDescription());
+                System.out.println("- " + item.getName() + ": " + item.getDescription());
             }} else {
             System.out.println("There are no items in this room");
         }
@@ -69,15 +69,15 @@ public class Room {
 
         public Item findItem (String itemName){
             for (Item item : availableItems) {
-                if (item.getNameItem().equalsIgnoreCase(itemName)) {
+                if (item.getName().equalsIgnoreCase(itemName)) {
                     return item;
                 }
             }
             return null;
         }
 
-        public void setRoomName (String roomName){
-            this.roomName = roomName;
+        public void setName(String name){
+            this.name = name;
         }
 
         public void getAdjacents (String direction){
@@ -92,7 +92,7 @@ public class Room {
             return availableAnimals;
         }
 
-        public void setAvailableAnimals (List < Animal > availableAnimals) {
+        public void setAvailableAnimals (List <Animal> availableAnimals) {
             this.availableAnimals = availableAnimals;
         }
 

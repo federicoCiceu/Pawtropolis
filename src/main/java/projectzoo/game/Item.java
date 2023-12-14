@@ -2,18 +2,18 @@ package projectzoo.game;
 
 public class Item {
 
-    private String nameItem;
+    private String name;
     private String description;
     private int slotRequired;
 
     public Item(String nameItem, String description, int slotRequired) {
-        this.nameItem = nameItem;
+        this.name = nameItem;
         this.description = description;
         this.slotRequired = slotRequired;
     }
 
-    public String getNameItem() {
-        return nameItem;
+    public String getName() {
+        return name;
     }
 
     public String getDescription() {
@@ -32,7 +32,7 @@ public class Item {
         this.description = description;
     }
 
-    public void setNameItem(String nameItem) {
-        this.nameItem = nameItem;
+    public void setName(String name) {
+        this.name = name;
     }
 }
