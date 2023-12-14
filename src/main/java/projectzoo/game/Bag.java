@@ -22,15 +22,6 @@ public class Bag {
         return size;
     }
 
-    public void viewBag() {
-        if (bagUsedSlots() != 0){
-            for (Item item : itemList) {
-            System.out.println(" " + item.getName()+" description: " + item.getDescription());
-        }
-        }else {
-            System.out.println("No items found in he bag");
-        }
-    }
 
     public void addItem(Item item) {
         if (itemList.size() < availableSlot) {

@@ -136,18 +136,18 @@ public class VideoGameController {
             Room nextRoom = player.getCurrentRoom().getAdjacents().get(inputPart);
             player.setCurrentRoom(nextRoom);
             System.out.println("You have entered " + nextRoom.getName());
-            player.getCurrentRoom().lookRoom();
+            player.lookRoom();
         } else {
             System.out.println("Invalid direction. Try again.");
         }
     }
 
     private void lookRoom() {
-        player.getCurrentRoom().lookRoom();
+        player.lookRoom();
     }
 
     private void viewBag() {
-       player.getBag().viewBag();
+       player.viewBag();
     }
 
     private void getItem(String inputPart) {

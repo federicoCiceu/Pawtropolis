@@ -43,25 +43,6 @@ public class Room {
     }
 
 
-    public void lookRoom() {
-        System.out.println("You're in the room: " + name);
-        System.out.println("Available directions: " + String.join(", ", adjacents.keySet()));
-
-        if (!availableItems.isEmpty()) {
-            System.out.println("Available items");
-            for (Item item : availableItems) {
-                System.out.println("- " + item.getName() + ": " + item.getDescription());
-            }} else {
-            System.out.println("There are no items in this room");
-        }
-        if (!availableAnimals.isEmpty()) {
-            System.out.println("NPC: ");
-            for (Animal animal : availableAnimals) {
-                System.out.println("- " + animal.getNickname() + "(" + animal.getClass().getSimpleName() + ")");
-            }}else {
-                System.out.println("There are no NPCs in this room");
-            }
-        }
 
         public void dropItem (Item item){
             availableItems.remove(item);
