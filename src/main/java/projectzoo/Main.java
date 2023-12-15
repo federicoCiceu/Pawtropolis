@@ -1,8 +1,8 @@
 package projectzoo;
 
-import projectzoo.domain.Room;
+import projectzoo.game.Room;
 import projectzoo.game.Player;
-import projectzoo.gamecontroller.VideoGameController;
+import projectzoo.game.gamecontroller.VideoGameController;
 
 
 public class Main {

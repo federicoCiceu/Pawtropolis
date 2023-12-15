@@ -1,7 +1,6 @@
 package projectzoo.game;
 
 import projectzoo.animals.Animal;
-import projectzoo.domain.Room;
 
 public class Player {
 
@@ -55,31 +54,33 @@ public class Player {
     }
 
     public void viewBag() {
-        if (bag.bagUsedSlots() != 0){
+        if (bag.bagUsedSlots() != 0) {
             for (Item item : bag.getItemList()) {
-                System.out.println(" " + item.getName()+" description: " + item.getDescription());
+                System.out.println(" " + item.getName() + " description: " + item.getDescription());
             }
-        }else {
+        } else {
             System.out.println("No items found in he bag");
         }
     }
 
     public void lookRoom() {
-        System.out.println("You're in the room: " + name);
+        System.out.println("You're in the room: " + currentRoom.getName());
         System.out.println("Available directions: " + String.join(", ", currentRoom.getAdjacents().keySet()));
 
         if (!currentRoom.getAvailableItems().isEmpty()) {
             System.out.println("Available items");
             for (Item item : currentRoom.getAvailableItems()) {
                 System.out.println("- " + item.getName() + ": " + item.getDescription());
-            }} else {
+            }
+        } else {
             System.out.println("There are no items in this room");
         }
         if (!currentRoom.getAvailableAnimals().isEmpty()) {
             System.out.println("NPC: ");
             for (Animal animal : currentRoom.getAvailableAnimals()) {
                 System.out.println("- " + animal.getNickname() + "(" + animal.getClass().getSimpleName() + ")");
-            }}else {
+            }
+        } else {
             System.out.println("There are no NPCs in this room");
         }
     }

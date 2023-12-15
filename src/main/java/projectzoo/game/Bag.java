@@ -53,9 +53,11 @@ public class Bag {
             System.out.println("Item '" + itemName + "' not found in the bag.");
         }
     }
+
     public int getAvailableSlot() {
         return availableSlot;
     }
+
     public List<Item> getItemList() {
         return itemList;
     }
@@ -63,6 +65,7 @@ public class Bag {
     public void setAvailableSlot(int availableSlot) {
         this.availableSlot = availableSlot;
     }
+
     public void setItemList(List<Item> itemList) {
         this.itemList = itemList;
     }

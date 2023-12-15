@@ -1,7 +1,6 @@
-package projectzoo.domain;
+package projectzoo.game;
 
 import projectzoo.animals.Animal;
-import projectzoo.game.Item;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,40 +42,38 @@ public class Room {
     }
 
 
+    public void dropItem(Item item) {
+        availableItems.remove(item);
+    }
 
-        public void dropItem (Item item){
-            availableItems.remove(item);
-        }
-
-        public Item findItem (String itemName){
-            for (Item item : availableItems) {
-                if (item.getName().equalsIgnoreCase(itemName)) {
-                    return item;
-                }
+    public Item findItem(String itemName) {
+        for (Item item : availableItems) {
+            if (item.getName().equalsIgnoreCase(itemName)) {
+                return item;
             }
-            return null;
         }
+        return null;
+    }
 
-        public void setName(String name){
-            this.name = name;
-        }
+    public List<Item> getAvailableItems() {
+        return availableItems;
+    }
 
-        public void getAdjacents (String direction){
-            adjacents.get(direction);
-        }
+    public List<Animal> getAvailableAnimals() {
+        return availableAnimals;
+    }
 
-        public List<Item> getAvailableItems () {
-            return availableItems;
-        }
+    public void setAvailableAnimals(List<Animal> availableAnimals) {
+        this.availableAnimals = availableAnimals;
+    }
 
-        public List<Animal> getAvailableAnimals () {
-            return availableAnimals;
-        }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-        public void setAvailableAnimals (List <Animal> availableAnimals) {
-            this.availableAnimals = availableAnimals;
-        }
-
+    public void getAdjacents(String direction) {
+        adjacents.get(direction);
+    }
 
 
 }

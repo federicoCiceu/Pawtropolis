@@ -1,9 +1,9 @@
-package projectzoo.gamecontroller;
+package projectzoo.game.gamecontroller;
 
 import projectzoo.animals.Eagle;
 import projectzoo.animals.Lion;
 import projectzoo.animals.Tiger;
-import projectzoo.domain.Room;
+import projectzoo.game.Room;
 import projectzoo.game.Item;
 import projectzoo.game.Player;
 
@@ -18,10 +18,10 @@ public class VideoGameController {
     private static final String EAST = "east";
 
     public static Room roomMonstadt = new Room("Monstadt");
-    public  Room roomLiyue = new Room("Liyue");
-    public  Room roomInazuma = new Room("Inazuma");
-    public  Room roomSumeru = new Room("Sumeru");
-    public  Room roomFontaine = new Room("Fontaine");
+    public Room roomLiyue = new Room("Liyue");
+    public Room roomInazuma = new Room("Inazuma");
+    public Room roomSumeru = new Room("Sumeru");
+    public Room roomFontaine = new Room("Fontaine");
 
     public VideoGameController(Player player) {
         this.player = player;
@@ -128,7 +128,7 @@ public class VideoGameController {
                 default:
                     System.out.println("Invalid Input, try again");
             }
-        } while (!playerInput.equalsIgnoreCase("EXIT" ));
+        } while (!playerInput.equalsIgnoreCase("EXIT"));
     }
 
     private void goRoom(String inputPart) {
@@ -147,7 +147,7 @@ public class VideoGameController {
     }
 
     private void viewBag() {
-       player.viewBag();
+        player.viewBag();
     }
 
     private void getItem(String inputPart) {
