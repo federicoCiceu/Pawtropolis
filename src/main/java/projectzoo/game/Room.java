@@ -25,6 +25,10 @@ public class Room {
         availableItems.add(item);
     }
 
+    public void dropItem(Item item) {
+        availableItems.remove(item);
+    }
+
     public void addAnimal(Animal animal) {
         availableAnimals.add(animal);
     }
@@ -39,20 +43,6 @@ public class Room {
 
     public Map<String, Room> getAdjacents() {
         return adjacents;
-    }
-
-
-    public void dropItem(Item item) {
-        availableItems.remove(item);
-    }
-
-    public Item findItem(String itemName) {
-        for (Item item : availableItems) {
-            if (item.getName().equalsIgnoreCase(itemName)) {
-                return item;
-            }
-        }
-        return null;
     }
 
     public List<Item> getAvailableItems() {

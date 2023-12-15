@@ -14,52 +14,34 @@ public class Bag {
         this.availableSlot = availableSlot;
     }
 
-    public int bagUsedSlots() {
-        int size = 0;
-        for (Item item : itemList) {
-            size = item.getSlotRequired() + size;
-        }
-        return size;
+    public List<Item> getItemList() {
+        return itemList;
     }
 
+    public int bagUsedSlots() {
+        return itemList.stream()
+                .mapToInt(Item::getSlotRequired)
+                .sum();
+    }
 
     public void addItem(Item item) {
         if (itemList.size() < availableSlot) {
             itemList.add(item);
         } else {
-            System.out.println("The bag is full. Cannot add " + item.getName() + ".");
+            System.out.println("The bag is full. Can't add " + item.getName() + ".");
         }
-    }
-
-    public Item findItem(String itemName) {
-        for (Item item : itemList) {
-            if (item.getName().equalsIgnoreCase(itemName)) {
-                return item;
-            }
-        }
-        return null;
     }
 
     public void dropItem(String itemName) {
-        boolean itemFound = false;
-        for (Item item : itemList) {
-            if (item.getName().equals(itemName)) {
-                itemFound = true;
-                itemList.remove(item);
-                break;
-            }
-        }
+        boolean itemFound = itemList.removeIf(item -> item.getName().equals(itemName));
+
         if (!itemFound) {
-            System.out.println("Item '" + itemName + "' not found in the bag.");
+            System.out.println("The item '" + itemName + " is not present inside the bag.");
         }
     }
 
     public int getAvailableSlot() {
         return availableSlot;
-    }
-
-    public List<Item> getItemList() {
-        return itemList;
     }
 
     public void setAvailableSlot(int availableSlot) {

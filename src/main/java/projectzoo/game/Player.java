@@ -1,7 +1,5 @@
 package projectzoo.game;
 
-import projectzoo.animals.Animal;
-
 public class Player {
 
     private String name;
@@ -29,23 +27,34 @@ public class Player {
     }
 
     public void pickItem(String itemName) {
-        Item item = currentRoom.findItem(itemName);
+        if (currentRoom.getAvailableItems()
+                .stream()
+                .anyMatch(item -> item.getName().equals(itemName))) {
 
-        if (item != null) {
-            if (bag.bagUsedSlots() + item.getSlotRequired() <= bag.getAvailableSlot()) {
-                bag.addItem(item);
-                currentRoom.dropItem(item);
-            } else {
-                System.out.println("Not enough space in the bag.");
-            }
+            Item item = currentRoom.getAvailableItems()
+                    .stream()
+                    .filter(i -> i.getName().equals(itemName))
+                    .findFirst()
+                    .get();
+
+            bag.addItem(item);
+            currentRoom.dropItem(item);
         } else {
-            System.out.println("The item is not present in this room.");
+            System.out.println("Item not found in the room.");
         }
     }
 
     public void dropItem(String itemName) {
-        Item item = bag.findItem(itemName);
-        if (item != null) {
+        if (bag.getItemList()
+                .stream()
+                .anyMatch(item -> item.getName().equals(itemName))) {
+
+            Item item = bag.getItemList()
+                    .stream()
+                    .filter(i -> i.getName().equals(itemName))
+                    .findFirst()
+                    .get();
+
             bag.dropItem(itemName);
             currentRoom.addItem(item);
         } else {
@@ -55,11 +64,10 @@ public class Player {
 
     public void viewBag() {
         if (bag.bagUsedSlots() != 0) {
-            for (Item item : bag.getItemList()) {
-                System.out.println(" " + item.getName() + " description: " + item.getDescription());
-            }
+            bag.getItemList()
+                    .forEach(item -> System.out.println(" " + item.getName() + " description: " + item.getDescription()));
         } else {
-            System.out.println("No items found in he bag");
+            System.out.println("No items found in the bag");
         }
     }
 
@@ -69,17 +77,16 @@ public class Player {
 
         if (!currentRoom.getAvailableItems().isEmpty()) {
             System.out.println("Available items");
-            for (Item item : currentRoom.getAvailableItems()) {
-                System.out.println("- " + item.getName() + ": " + item.getDescription());
-            }
+            currentRoom.getAvailableItems()
+                    .forEach(item -> System.out.println("- " + item.getName() + ": " + item.getDescription()));
         } else {
             System.out.println("There are no items in this room");
         }
+
         if (!currentRoom.getAvailableAnimals().isEmpty()) {
             System.out.println("NPC: ");
-            for (Animal animal : currentRoom.getAvailableAnimals()) {
-                System.out.println("- " + animal.getNickname() + "(" + animal.getClass().getSimpleName() + ")");
-            }
+            currentRoom.getAvailableAnimals()
+                    .forEach(animal -> System.out.println("- " + animal.getNickname() + "(" + animal.getClass().getSimpleName() + ")"));
         } else {
             System.out.println("There are no NPCs in this room");
         }

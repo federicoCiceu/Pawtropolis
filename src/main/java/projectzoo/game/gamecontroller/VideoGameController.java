@@ -28,13 +28,12 @@ public class VideoGameController {
     }
 
 
-    // Create Items
     Item item1 = new Item("sword", "A Sword user’s Normal Attack is typically a chain of “rapid strikes”", 8);
     Item item2 = new Item("bow", "A Bow user’s Normal Attack launches a chain of fast, mid-ranged shots", 10);
     Item item3 = new Item("polearm", "A Polearm user’s Normal Attack performs a few rapid, consecutive spear strikes", 10);
     Item item4 = new Item("catalyst", "A Catalyst user applies element to enemies when they are hit with Normal Attack", 3);
 
-    // Create Animals
+
     Lion lion1 = new Lion("Venti", "Ribs", 4, LocalDate.of(2019, 1, 23), 2.0, 1.28, 40);
     Lion lion2 = new Lion("Zhongli", "Chicken", 8, LocalDate.of(2015, 4, 10), 1.09, 1.17, 36);
     Lion lion3 = new Lion("Raiden", "Pork", 10, LocalDate.of(2013, 12, 5), 2.80, 1.20, 55);
@@ -52,7 +51,7 @@ public class VideoGameController {
 
         String playerInput;
 
-        // Connect Rooms (direction - roomName)
+
         roomMonstadt.addAdjacents(WEST, roomLiyue);
         roomLiyue.addAdjacents(EAST, roomMonstadt);
         roomLiyue.addAdjacents(SOUTH, roomInazuma);
@@ -62,14 +61,14 @@ public class VideoGameController {
         roomSumeru.addAdjacents(EAST, roomLiyue);
         roomFontaine.addAdjacents(SOUTH, roomSumeru);
 
-        // Add Items to Rooms/Bag
+
         roomMonstadt.addItem(item1);
         roomLiyue.addItem(item2);
         roomInazuma.addItem(item3);
         roomFontaine.addItem(item3);
         player.getBag().addItem(item4);
 
-        // Add NPCs to Rooms
+
         roomMonstadt.addAnimal(lion1);
         roomMonstadt.addAnimal(eagle2);
         roomLiyue.addAnimal(lion2);
