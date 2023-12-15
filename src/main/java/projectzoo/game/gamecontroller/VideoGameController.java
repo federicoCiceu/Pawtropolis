@@ -130,17 +130,6 @@ public class VideoGameController {
         } while (!playerInput.equalsIgnoreCase("EXIT"));
     }
 
-    private void goRoom(String inputPart) {
-        if (player.getCurrentRoom().getAdjacents().containsKey(inputPart)) {
-            Room nextRoom = player.getCurrentRoom().getAdjacents().get(inputPart);
-            player.setCurrentRoom(nextRoom);
-            System.out.println("You have entered " + nextRoom.getName());
-            player.lookRoom();
-        } else {
-            System.out.println("Invalid direction. Try again.");
-        }
-    }
-
     private void lookRoom() {
         player.lookRoom();
     }
@@ -156,4 +145,5 @@ public class VideoGameController {
     private void dropItem(String inputPart) {
         player.dropItem(inputPart);
     }
+    private void goRoom(String inputPart){player.goRoom(inputPart);}
 }

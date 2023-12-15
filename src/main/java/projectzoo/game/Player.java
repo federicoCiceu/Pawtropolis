@@ -92,7 +92,16 @@ public class Player {
         }
     }
 
-
+    public void goRoom(String inputPart) {
+        if (getCurrentRoom().getAdjacents().containsKey(inputPart)) {
+            Room nextRoom = getCurrentRoom().getAdjacents().get(inputPart);
+            setCurrentRoom(nextRoom);
+            System.out.println("You have entered " + nextRoom.getName());
+            lookRoom();
+        } else {
+            System.out.println("Invalid direction. Try again.");
+        }
+    }
     public String getName() {
         return name;
     }
