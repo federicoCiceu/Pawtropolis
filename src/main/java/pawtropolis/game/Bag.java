@@ -1,4 +1,4 @@
-package projectzoo.game;
+package pawtropolis.game;
 
 import java.util.ArrayList;
 import java.util.List;

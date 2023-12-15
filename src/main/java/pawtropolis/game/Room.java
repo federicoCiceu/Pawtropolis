@@ -1,6 +1,6 @@
-package projectzoo.game;
+package pawtropolis.game;
 
-import projectzoo.animals.Animal;
+import pawtropolis.animals.Animal;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,6 +1,6 @@
-package projectzoo.animals.controller;
+package pawtropolis.animals.controller;
 
-import projectzoo.animals.*;
+import pawtropolis.animals.*;
 
 import java.util.*;
 

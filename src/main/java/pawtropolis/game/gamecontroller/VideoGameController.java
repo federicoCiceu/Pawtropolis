@@ -1,11 +1,11 @@
-package projectzoo.game.gamecontroller;
+package pawtropolis.game.gamecontroller;
 
-import projectzoo.animals.Eagle;
-import projectzoo.animals.Lion;
-import projectzoo.animals.Tiger;
-import projectzoo.game.Room;
-import projectzoo.game.Item;
-import projectzoo.game.Player;
+import pawtropolis.animals.Eagle;
+import pawtropolis.animals.Lion;
+import pawtropolis.animals.Tiger;
+import pawtropolis.game.Room;
+import pawtropolis.game.Item;
+import pawtropolis.game.Player;
 
 import java.time.LocalDate;
 import java.util.*;

@@ -1,4 +1,4 @@
-package projectzoo.game;
+package pawtropolis.game;
 
 public class Player {
 

@@ -1,8 +1,8 @@
-package projectzoo;
+package pawtropolis;
 
-import projectzoo.game.Room;
-import projectzoo.game.Player;
-import projectzoo.game.gamecontroller.VideoGameController;
+import pawtropolis.game.Room;
+import pawtropolis.game.Player;
+import pawtropolis.game.gamecontroller.VideoGameController;
 
 
 public class Main {
