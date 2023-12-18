@@ -1,11 +1,14 @@
 package pawtropolis.game;
 
+
+import pawtropolis.game.commands.DirectionEnum;
+
 public class Player {
 
     private String name;
     private int lifePoints;
     private final Bag bag;
-    private Room currentRoom;
+    private  Room currentRoom;
 
     public Player(String name, int lifePoints, Room startingRoom) {
         this.name = name;
@@ -22,20 +25,31 @@ public class Player {
         return currentRoom;
     }
 
-    public void setCurrentRoom(Room room) {
-        this.currentRoom = room;
+    public void setCurrentRoom(Room currentRoom) {
+        this.currentRoom = currentRoom;
+    }
+
+    public void goRoom(DirectionEnum direction) {
+        if (getCurrentRoom().getAdjacents().containsKey(direction)) {
+            Room nextRoom = getCurrentRoom().getAdjacents().get(direction);
+            setCurrentRoom(nextRoom);
+            System.out.println("You have entered " + nextRoom.getName());
+            lookRoom();
+        } else {
+            System.out.println("Invalid direction. Try again.");
+        }
     }
 
     public void pickItem(String itemName) {
-        if (currentRoom.getAvailableItems()
+        if (currentRoom.getAvailableItems()//il player non deve entrare nella currentroom
                 .stream()
-                .anyMatch(item -> item.getName().equals(itemName))) {
+                .anyMatch(item -> item.getName().equals(itemName))) { //non fare due stream separate
 
             Item item = currentRoom.getAvailableItems()
                     .stream()
                     .filter(i -> i.getName().equals(itemName))
                     .findFirst()
-                    .get();
+                    .get(); //orElse = null
 
             bag.addItem(item);
             currentRoom.dropItem(item);
@@ -73,35 +87,32 @@ public class Player {
 
     public void lookRoom() {
         System.out.println("You're in the room: " + currentRoom.getName());
-        System.out.println("Available directions: " + String.join(", ", currentRoom.getAdjacents().keySet()));
+        System.out.println("Available directions: " + getAvailableDirections(currentRoom));
 
         if (!currentRoom.getAvailableItems().isEmpty()) {
-            System.out.println("Available items");
-            currentRoom.getAvailableItems()
-                    .forEach(item -> System.out.println("- " + item.getName() + ": " + item.getDescription()));
+            System.out.println("Available items:");
+            currentRoom.getAvailableItems().forEach(item ->
+                    System.out.println("- " + item.getName() + ": " + item.getDescription()));
         } else {
             System.out.println("There are no items in this room");
         }
 
         if (!currentRoom.getAvailableAnimals().isEmpty()) {
-            System.out.println("NPC: ");
-            currentRoom.getAvailableAnimals()
-                    .forEach(animal -> System.out.println("- " + animal.getNickname() + "(" + animal.getClass().getSimpleName() + ")"));
+            System.out.println("NPC:");
+            currentRoom.getAvailableAnimals().forEach(animal ->
+                    System.out.println("- " + animal.getNickname() + " (" +
+                            animal.getClass().getSimpleName() + ")"));
         } else {
             System.out.println("There are no NPCs in this room");
         }
     }
 
-    public void goRoom(String inputPart) {
-        if (getCurrentRoom().getAdjacents().containsKey(inputPart)) {
-            Room nextRoom = getCurrentRoom().getAdjacents().get(inputPart);
-            setCurrentRoom(nextRoom);
-            System.out.println("You have entered " + nextRoom.getName());
-            lookRoom();
-        } else {
-            System.out.println("Invalid direction. Try again.");
-        }
+
+
+    private String getAvailableDirections(Room room) {
+        return room.getAdjacents().keySet().toString();
     }
+
     public String getName() {
         return name;
     }

@@ -1,6 +1,7 @@
 package pawtropolis.game;
 
 import pawtropolis.animals.Animal;
+import pawtropolis.game.commands.DirectionEnum;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,14 +13,17 @@ public class Room {
     private String name;
     private final List<Item> availableItems;
     private List<Animal> availableAnimals;
-    private final Map<String, Room> adjacents;
+    private final Map<DirectionEnum, Room> adjacents;
+
 
     public Room(String roomName) {
         this.name = roomName;
+        this.adjacents = new HashMap<>();
         this.availableItems = new ArrayList<>();
         this.availableAnimals = new ArrayList<>();
-        this.adjacents = new HashMap<>();
+
     }
+
 
     public void addItem(Item item) {
         availableItems.add(item);
@@ -33,16 +37,16 @@ public class Room {
         availableAnimals.add(animal);
     }
 
-    public void addAdjacents(String direction, Room currentRoom) {
+    public void addAdjacents(DirectionEnum direction, Room currentRoom) {
         adjacents.put(direction, currentRoom);
+    }
+
+    public Map<DirectionEnum, Room> getAdjacents() {
+        return adjacents;
     }
 
     public String getName() {
         return name;
-    }
-
-    public Map<String, Room> getAdjacents() {
-        return adjacents;
     }
 
     public List<Item> getAvailableItems() {
@@ -61,9 +65,7 @@ public class Room {
         this.name = name;
     }
 
-    public void getAdjacents(String direction) {
-        adjacents.get(direction);
-    }
+
 
 
 }

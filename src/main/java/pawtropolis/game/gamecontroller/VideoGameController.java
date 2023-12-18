@@ -6,16 +6,20 @@ import pawtropolis.animals.Tiger;
 import pawtropolis.game.Room;
 import pawtropolis.game.Item;
 import pawtropolis.game.Player;
+import pawtropolis.game.commands.*;
 
 import java.time.LocalDate;
 import java.util.*;
 
+
 public class VideoGameController {
     private final Player player;
-    private static final String NORTH = "north";
-    private static final String SOUTH = "south";
-    private static final String WEST = "west";
-    private static final String EAST = "east";
+    private final Map<Command, CommandController> commandActions;
+
+
+    private enum Command {
+        GO, LOOK, BAG, GET, DROP, EXIT
+    }
 
     public static Room roomMonstadt = new Room("Monstadt");
     public Room roomLiyue = new Room("Liyue");
@@ -24,7 +28,15 @@ public class VideoGameController {
     public Room roomFontaine = new Room("Fontaine");
 
     public VideoGameController(Player player) {
+
         this.player = player;
+        commandActions = new HashMap<>();
+        commandActions.put(Command.GO, new GoCommandAction(player));
+        commandActions.put(Command.LOOK, new LookCommandAction(player));
+        commandActions.put(Command.BAG, new BagCommandAction(player));
+        commandActions.put(Command.GET, new GetCommandAction(player));
+        commandActions.put(Command.DROP, new DropCommandAction(player));
+        commandActions.put(Command.EXIT, new ExitCommandAction(player));
     }
 
 
@@ -51,15 +63,14 @@ public class VideoGameController {
 
         String playerInput;
 
-
-        roomMonstadt.addAdjacents(WEST, roomLiyue);
-        roomLiyue.addAdjacents(EAST, roomMonstadt);
-        roomLiyue.addAdjacents(SOUTH, roomInazuma);
-        roomInazuma.addAdjacents(NORTH, roomLiyue);
-        roomLiyue.addAdjacents(WEST, roomSumeru);
-        roomSumeru.addAdjacents(NORTH, roomFontaine);
-        roomSumeru.addAdjacents(EAST, roomLiyue);
-        roomFontaine.addAdjacents(SOUTH, roomSumeru);
+        roomMonstadt.addAdjacents(DirectionEnum.NORTH, roomLiyue);
+        roomLiyue.addAdjacents(DirectionEnum.EAST, roomMonstadt);
+        roomLiyue.addAdjacents(DirectionEnum.SOUTH, roomInazuma);
+        roomInazuma.addAdjacents(DirectionEnum.NORTH, roomLiyue);
+        roomLiyue.addAdjacents(DirectionEnum.WEST, roomSumeru);
+        roomSumeru.addAdjacents(DirectionEnum.NORTH, roomFontaine);
+        roomSumeru.addAdjacents(DirectionEnum.EAST, roomLiyue);
+        roomFontaine.addAdjacents(DirectionEnum.SOUTH, roomSumeru);
 
 
         roomMonstadt.addItem(item1);
@@ -93,57 +104,22 @@ public class VideoGameController {
             playerInput = scanner.nextLine().toLowerCase().trim();
             String[] inputParts = playerInput.split(" ", 2);
 
-            switch (inputParts[0]) {
-                case "go":
-                    if (inputParts.length == 2) {
-                        goRoom(inputParts[1]);
-                    } else {
-                        System.out.println("Please specify a direction.");
-                    }
-                    break;
-                case "look":
-                    lookRoom();
-                    break;
-                case "bag":
-                    viewBag();
-                    break;
-                case "get":
-                    if (inputParts.length == 2) {
-                        getItem(inputParts[1]);
-                    } else {
-                        System.out.println("Please choose the item to obtain.");
-                    }
-                    break;
-                case "drop":
-                    if (inputParts.length == 2) {
-                        dropItem(inputParts[1]);
-                    } else {
-                        System.out.println("Please choose the item to drop.");
-                    }
-                    break;
-                case "exit":
-                    System.out.println("Pawtropolis hopes to see you again!");
-                    break;
-                default:
-                    System.out.println("Invalid Input, try again");
+            Command command = getCommand(inputParts[0]);
+
+            if (command != null) {
+                commandActions.get(command).execute(inputParts);
+            } else {
+                System.out.println("Invalid Input, try again");
             }
         } while (!playerInput.equalsIgnoreCase("EXIT"));
     }
 
-    private void lookRoom() {
-        player.lookRoom();
+    private Command getCommand(String input) {
+        try {
+            return Command.valueOf(input.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
     }
 
-    private void viewBag() {
-        player.viewBag();
-    }
-
-    private void getItem(String inputPart) {
-        player.pickItem(inputPart);
-    }
-
-    private void dropItem(String inputPart) {
-        player.dropItem(inputPart);
-    }
-    private void goRoom(String inputPart){player.goRoom(inputPart);}
 }
