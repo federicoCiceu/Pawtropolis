@@ -25,7 +25,7 @@ public class Bag {
     }
 
     public void addItem(Item item) {
-        if (itemList.size() < availableSlot) {
+        if (bagUsedSlots() < availableSlot) {
             itemList.add(item);
         } else {
             System.out.println("The bag is full. Can't add " + item.getName() + ".");
