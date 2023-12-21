@@ -1,11 +1,9 @@
 package pawtropolis.game.commands;
 
-import pawtropolis.game.Bag;
 import pawtropolis.game.Item;
 import pawtropolis.game.Player;
 import pawtropolis.game.PopulateGame;
 import pawtropolis.game.gamecontroller.CommandController;
-import pawtropolis.game.gamecontroller.VideoGameController;
 
 import java.util.Optional;
 
@@ -19,7 +17,7 @@ public class GetCommandAction implements CommandController {
     }
 
     public void pickItem(String itemName) {
-        Optional<Item> optionalItem = populateGame.getCurrentRoom().getAvailableItems()
+        Optional<Item> optionalItem = populateGame.getCurrentRoom().getItems()
                 .stream()
                 .filter(item -> item.getName().equals(itemName))
                 .findFirst();

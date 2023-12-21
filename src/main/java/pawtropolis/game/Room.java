@@ -3,45 +3,43 @@ package pawtropolis.game;
 import pawtropolis.animals.Animal;
 import pawtropolis.game.commands.DirectionEnum;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 public class Room {
     private String name;
-    private final List<Item> availableItems;
-    private List<Animal> availableAnimals;
-    private final Map<DirectionEnum, Room> adjacents;
+    private final List<Item> items;
+    private List<Animal> animals;
+    private final EnumMap<DirectionEnum, Room> adjacentsRoom;
 
 
     public Room(String roomName) {
         this.name = roomName;
-        this.adjacents = new HashMap<>();
-        this.availableItems = new ArrayList<>();
-        this.availableAnimals = new ArrayList<>();
+        this.adjacentsRoom = new EnumMap<>(DirectionEnum.class);
+        this.items = new ArrayList<>();
+        this.animals = new ArrayList<>();
 
     }
 
     public void addItem(Item item) {
-        availableItems.add(item);
+        items.add(item);
     }
 
     public void dropItem(Item item) {
-        availableItems.remove(item);
+        items.remove(item);
     }
 
     public void addAnimal(Animal animal) {
-        availableAnimals.add(animal);
+        animals.add(animal);
     }
 
-    public void addAdjacents(DirectionEnum direction, Room currentRoom) {
-        adjacents.put(direction, currentRoom);
+    public void addAdjacents(DirectionEnum direction, Room nextRoom) {
+        adjacentsRoom.put(direction, nextRoom);
+        nextRoom.adjacentsRoom.put(DirectionEnum.getOppositeDirection(direction), this);
     }
 
-    public Map<DirectionEnum, Room> getAdjacents() {
-        return adjacents;
+    public Map<DirectionEnum, Room> getAdjacentsRoom() {
+        return adjacentsRoom;
     }
 
     public String getName() {
@@ -49,16 +47,16 @@ public class Room {
     }
 
 
-    public List<Item> getAvailableItems() {
-        return availableItems;
+    public List<Item> getItems() {
+        return items;
     }
 
-    public List<Animal> getAvailableAnimals() {
-        return availableAnimals;
+    public List<Animal> getAnimals() {
+        return animals;
     }
 
-    public void setAvailableAnimals(List<Animal> availableAnimals) {
-        this.availableAnimals = availableAnimals;
+    public void setAnimals(List<Animal> animals) {
+        this.animals = animals;
     }
 
     public void setName(String name) {

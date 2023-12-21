@@ -30,6 +30,7 @@ public class PopulateGame {
         this.currentRoom = currentRoom;
     }
 
+
     public void populateGame() {
 
         Item item1 = new Item("sword", "A Sword user’s Normal Attack is typically a chain of “rapid strikes”", 11);
@@ -49,15 +50,10 @@ public class PopulateGame {
         Eagle eagle2 = new Eagle("Dvalin", "Chicken", 30, LocalDate.of(1993, 5, 1), 2.48, 0.90, 33);
         Eagle eagle3 = new Eagle("Ayaka", "Mouse", 1, LocalDate.of(2023, 6, 28), 1.98, 0.45, 13);
 
-
         roomMonstadt.addAdjacents(DirectionEnum.WEST, roomLiyue);
-        roomLiyue.addAdjacents(DirectionEnum.EAST, roomMonstadt);
         roomLiyue.addAdjacents(DirectionEnum.SOUTH, roomInazuma);
-        roomInazuma.addAdjacents(DirectionEnum.NORTH, roomLiyue);
         roomLiyue.addAdjacents(DirectionEnum.WEST, roomSumeru);
         roomSumeru.addAdjacents(DirectionEnum.NORTH, roomFontaine);
-        roomSumeru.addAdjacents(DirectionEnum.EAST, roomLiyue);
-        roomFontaine.addAdjacents(DirectionEnum.SOUTH, roomSumeru);
 
         roomMonstadt.addItem(item1);
         roomLiyue.addItem(item2);

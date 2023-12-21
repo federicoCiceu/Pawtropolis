@@ -21,6 +21,16 @@ public enum DirectionEnum {
                 .orElse(null);
     }
 
+    public static DirectionEnum getOppositeDirection(DirectionEnum direction){
+        return switch (direction){
+        case NORTH -> SOUTH;
+        case EAST -> WEST;
+        case WEST -> EAST;
+        case SOUTH -> NORTH;
+        };
+    }
+
+
     public String getName() {
         return name;
     }

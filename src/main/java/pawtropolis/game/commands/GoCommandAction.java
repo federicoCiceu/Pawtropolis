@@ -1,10 +1,8 @@
 package pawtropolis.game.commands;
 
-import pawtropolis.game.Player;
 import pawtropolis.game.PopulateGame;
 import pawtropolis.game.Room;
 import pawtropolis.game.gamecontroller.CommandController;
-import pawtropolis.game.gamecontroller.VideoGameController;
 
 public class GoCommandAction implements CommandController {
 
@@ -17,8 +15,8 @@ public class GoCommandAction implements CommandController {
     }
 
     public void goRoom(DirectionEnum direction) {
-        if (populateGame.getCurrentRoom().getAdjacents().containsKey(direction)) {
-            Room nextRoom = populateGame.getCurrentRoom().getAdjacents().get(direction);
+        if (populateGame.getCurrentRoom().getAdjacentsRoom().containsKey(direction)) {
+            Room nextRoom = populateGame.getCurrentRoom().getAdjacentsRoom().get(direction);
             populateGame.setCurrentRoom(nextRoom);
             System.out.println("You have entered " + nextRoom.getName());
         } else {
