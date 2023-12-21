@@ -1,24 +1,25 @@
 package pawtropolis.game.commands;
 
 import pawtropolis.game.Player;
+import pawtropolis.game.PopulateGame;
 import pawtropolis.game.Room;
 import pawtropolis.game.gamecontroller.CommandController;
 import pawtropolis.game.gamecontroller.VideoGameController;
 
 public class GoCommandAction implements CommandController {
 
-    private final VideoGameController videoGameController;
+    private final PopulateGame populateGame;
 
 
-    public GoCommandAction(VideoGameController videoGameController) {
-        this.videoGameController = videoGameController;
+    public GoCommandAction(PopulateGame populateGame) {
+        this.populateGame = populateGame;
 
     }
 
     public void goRoom(DirectionEnum direction) {
-        if (videoGameController.getCurrentRoom().getAdjacents().containsKey(direction)) {
-            Room nextRoom = videoGameController.getCurrentRoom().getAdjacents().get(direction);
-            videoGameController.setCurrentRoom(nextRoom);
+        if (populateGame.getCurrentRoom().getAdjacents().containsKey(direction)) {
+            Room nextRoom = populateGame.getCurrentRoom().getAdjacents().get(direction);
+            populateGame.setCurrentRoom(nextRoom);
             System.out.println("You have entered " + nextRoom.getName());
         } else {
             System.out.println("Invalid direction. Try again.");

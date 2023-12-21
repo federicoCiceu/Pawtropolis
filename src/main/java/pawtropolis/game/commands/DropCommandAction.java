@@ -1,38 +1,36 @@
 package pawtropolis.game.commands;
 
-import pawtropolis.game.Bag;
 import pawtropolis.game.Item;
 import pawtropolis.game.Player;
+import pawtropolis.game.PopulateGame;
 import pawtropolis.game.gamecontroller.CommandController;
-import pawtropolis.game.gamecontroller.VideoGameController;
+
+import java.util.Optional;
 
 public class DropCommandAction implements CommandController {
-    private Player player;
-    private final VideoGameController videoGameController;
+    private final Player player;
+    private final PopulateGame populateGame;
 
-    public DropCommandAction(Player player, VideoGameController videoGameController) {
+    public DropCommandAction(Player player, PopulateGame populateGame) {
         this.player  = player;
-        this.videoGameController = videoGameController;
+        this.populateGame = populateGame;
     }
 
     public void dropItem(String itemName) {
-        if (player.getItemList()
+        Optional<Item> optionalItem = player.getItems()
                 .stream()
-                .anyMatch(item -> item.getName().equals(itemName))) {
+                .filter(item -> item.getName().equals(itemName))
+                .findFirst();
 
-            Item item = player.getItemList()
-                    .stream()
-                    .filter(i -> i.getName().equals(itemName))
-                    .findFirst()
-                    .get();
-
-            player.dropItem(itemName);
-            videoGameController.getCurrentRoom().addItem(item);
+        if (optionalItem.isPresent()) {
+            Item item = optionalItem.get();
+            player.dropItem(item);
+            populateGame.getCurrentRoom().addItem(item);
         } else {
-            System.out.println("Item not found in the bag.");
+            System.out.println("Item not found in the current room");
         }
     }
-
+    
     @Override
     public void execute(String[] inputParts) {
         if (inputParts.length == 2) {

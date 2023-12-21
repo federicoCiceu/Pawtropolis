@@ -1,16 +1,17 @@
 package pawtropolis.game.commands;
 
 import pawtropolis.game.Player;
+import pawtropolis.game.PopulateGame;
 import pawtropolis.game.Room;
 import pawtropolis.game.gamecontroller.CommandController;
 import pawtropolis.game.gamecontroller.VideoGameController;
 
 public class LookCommandAction implements CommandController {
-    private final VideoGameController videoGameController;
+    private final PopulateGame populateGame;
 
 
-    public LookCommandAction( VideoGameController videoGameController) {
-        this.videoGameController = videoGameController;
+    public LookCommandAction( PopulateGame populateGame) {
+        this.populateGame = populateGame;
     }
 
     private String getAvailableDirections(Room room) {
@@ -18,20 +19,20 @@ public class LookCommandAction implements CommandController {
     }
 
     public void lookRoom() {
-        System.out.println("You're in the room: " + videoGameController.getCurrentRoom().getName());
-        System.out.println("Available directions: " + getAvailableDirections(videoGameController.getCurrentRoom()));
+        System.out.println("You're in the room: " + populateGame.getCurrentRoom().getName());
+        System.out.println("Available directions: " + getAvailableDirections(populateGame.getCurrentRoom()));
 
-        if (!videoGameController.getCurrentRoom().getAvailableItems().isEmpty()) {
+        if (!populateGame.getCurrentRoom().getAvailableItems().isEmpty()) {
             System.out.println("Available items:");
-            videoGameController.getCurrentRoom().getAvailableItems().forEach(item ->
+            populateGame.getCurrentRoom().getAvailableItems().forEach(item ->
                     System.out.println("- " + item.getName() + ": " + item.getDescription()));
         } else {
             System.out.println("There are no items in this room");
         }
 
-        if (!videoGameController.getCurrentRoom().getAvailableAnimals().isEmpty()) {
+        if (!populateGame.getCurrentRoom().getAvailableAnimals().isEmpty()) {
             System.out.println("NPC:");
-            videoGameController.getCurrentRoom().getAvailableAnimals().forEach(animal ->
+            populateGame.getCurrentRoom().getAvailableAnimals().forEach(animal ->
                     System.out.println("- " + animal.getNickname() + " (" +
                             animal.getClass().getSimpleName() + ")"));
         } else {

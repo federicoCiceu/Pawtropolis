@@ -6,38 +6,34 @@ import java.util.List;
 
 public class Bag {
 
-    private List<Item> itemList;
+    private List<Item> items;
     private int availableSlot;
 
     public Bag(int availableSlot) {
-        this.itemList = new ArrayList<>();
+        this.items = new ArrayList<>();
         this.availableSlot = availableSlot;
     }
 
-    public List<Item> getItemList() {
-        return itemList;
+    public List<Item> getItems() {
+        return items;
     }
 
     public int bagUsedSlots() {
-        return itemList.stream()
+        return items.stream()
                 .mapToInt(Item::getSlotRequired)
                 .sum();
     }
 
     public void addItem(Item item) {
         if (bagUsedSlots() < availableSlot) {
-            itemList.add(item);
+            items.add(item);
         } else {
             System.out.println("The bag is full. Can't add " + item.getName() + ".");
         }
     }
 
-    public void dropItem(String itemName) {
-        boolean itemFound = itemList.removeIf(item -> item.getName().equals(itemName));
-
-        if (!itemFound) {
-            System.out.println("The item '" + itemName + " is not present inside the bag.");
-        }
+    public void dropItem(Item item) {
+        items.remove(item);
     }
 
     public int getAvailableSlot() {
@@ -48,8 +44,8 @@ public class Bag {
         this.availableSlot = availableSlot;
     }
 
-    public void setItemList(List<Item> itemList) {
-        this.itemList = itemList;
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 
 }

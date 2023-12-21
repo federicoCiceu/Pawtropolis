@@ -24,15 +24,15 @@ public class Player {
       return bag.bagUsedSlots();
     }
 
-    public List<Item> getItemList() {
-
-        return bag.getItemList();
+    public  List<Item> getItems() {
+        return bag.getItems();
     }
+
     public void addItem(Item item) {
         bag.addItem(item);
     }
 
-    public void dropItem(String item){
+    public void dropItem(Item item){
         bag.dropItem(item);
     }
 

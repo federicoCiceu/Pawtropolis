@@ -8,6 +8,8 @@ public enum CommandEnum {
     LOOK("look"),
     EXIT("exit");
 
+    //INVALID COMMAND PER CONTROLLARE LE ECCEZIONI
+
     private final String name;
 
     CommandEnum(String name) {
