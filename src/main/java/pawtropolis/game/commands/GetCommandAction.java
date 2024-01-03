@@ -2,16 +2,16 @@ package pawtropolis.game.commands;
 
 import pawtropolis.game.Item;
 import pawtropolis.game.Player;
-import pawtropolis.game.PopulateGame;
+import pawtropolis.game.gamecontroller.GameFactory;
 import pawtropolis.game.gamecontroller.CommandController;
 
 import java.util.Optional;
 
 public class GetCommandAction implements CommandController {
    private final Player player;
-    private final PopulateGame populateGame;
+    private final GameFactory populateGame;
 
-    public GetCommandAction(Player player, PopulateGame populateGame) {
+    public GetCommandAction(Player player, GameFactory populateGame) {
         this.player = player;
         this.populateGame = populateGame;
     }

@@ -1,16 +1,19 @@
-package pawtropolis.game;
+package pawtropolis.game.gamecontroller;
 
 import pawtropolis.animals.Eagle;
 import pawtropolis.animals.Lion;
 import pawtropolis.animals.Tiger;
+import pawtropolis.game.Item;
+import pawtropolis.game.Player;
+import pawtropolis.game.Room;
 import pawtropolis.game.commands.*;
 
 
 import java.time.LocalDate;
 
-public class PopulateGame {
+public class GameFactory {
     private final Player player;
-    private  Room currentRoom;
+    private Room currentRoom;
 
     public Room roomMonstadt = new Room("Monstadt");
     public Room roomLiyue = new Room("Liyue");
@@ -18,7 +21,7 @@ public class PopulateGame {
     public Room roomSumeru = new Room("Sumeru");
     public Room roomFontaine = new Room("Fontaine");
 
-    public PopulateGame(Player player) {
+    public GameFactory(Player player) {
         this.player = player;
     }
 

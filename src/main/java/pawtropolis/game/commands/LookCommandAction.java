@@ -1,14 +1,14 @@
 package pawtropolis.game.commands;
 
-import pawtropolis.game.PopulateGame;
+import pawtropolis.game.gamecontroller.GameFactory;
 import pawtropolis.game.Room;
 import pawtropolis.game.gamecontroller.CommandController;
 
 public class LookCommandAction implements CommandController {
-    private final PopulateGame populateGame;
+    private final GameFactory populateGame;
 
 
-    public LookCommandAction( PopulateGame populateGame) {
+    public LookCommandAction( GameFactory populateGame) {
         this.populateGame = populateGame;
     }
 

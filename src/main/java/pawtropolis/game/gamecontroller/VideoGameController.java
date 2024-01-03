@@ -1,12 +1,8 @@
 package pawtropolis.game.gamecontroller;
 
-import pawtropolis.animals.Eagle;
-import pawtropolis.animals.Lion;
-import pawtropolis.animals.Tiger;
 import pawtropolis.game.*;
 import pawtropolis.game.commands.*;
 
-import java.time.LocalDate;
 import java.util.*;
 
 
@@ -20,7 +16,7 @@ public class VideoGameController {
         this.commandActions = new EnumMap<>(CommandEnum.class);
     }
 
-    public void commandAssignment(PopulateGame populateGame){
+    public void commandAssignment(GameFactory populateGame){
 
         commandActions.put(CommandEnum.GO, new GoCommandAction(populateGame));
         commandActions.put(CommandEnum.LOOK, new LookCommandAction( populateGame));

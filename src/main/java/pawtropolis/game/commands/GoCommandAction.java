@@ -1,15 +1,15 @@
 package pawtropolis.game.commands;
 
-import pawtropolis.game.PopulateGame;
+import pawtropolis.game.gamecontroller.GameFactory;
 import pawtropolis.game.Room;
 import pawtropolis.game.gamecontroller.CommandController;
 
 public class GoCommandAction implements CommandController {
 
-    private final PopulateGame populateGame;
+    private final GameFactory populateGame;
 
 
-    public GoCommandAction(PopulateGame populateGame) {
+    public GoCommandAction(GameFactory populateGame) {
         this.populateGame = populateGame;
 
     }
