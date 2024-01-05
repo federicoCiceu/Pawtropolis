@@ -9,9 +9,9 @@ public class Bag {
     private List<Item> items;
     private int slot;
 
-    public Bag(int availableSlot) {
+    public Bag(int slot) {
         this.items = new ArrayList<>();
-        this.slot = availableSlot;
+        this.slot = slot;
     }
 
     public List<Item> getItems() {
