@@ -1,37 +1,31 @@
 package pawtropolis.game.commands;
 
-<<<<<<< Updated upstream
-import pawtropolis.game.Item;
-import pawtropolis.game.Player;
-import pawtropolis.game.PopulateGame;
-=======
 import pawtropolis.game.model.Item;
 import pawtropolis.game.model.Player;
 import pawtropolis.game.gamecontroller.GameFactory;
->>>>>>> Stashed changes
 import pawtropolis.game.gamecontroller.CommandController;
 
 import java.util.Optional;
 
-public class DropCommandAction implements CommandController {
-    private final Player player;
-    private final PopulateGame populateGame;
+public class GetCommandAction implements CommandController {
+   private final Player player;
+    private final GameFactory populateGame;
 
-    public DropCommandAction(Player player, PopulateGame populateGame) {
-        this.player  = player;
+    public GetCommandAction(Player player, GameFactory populateGame) {
+        this.player = player;
         this.populateGame = populateGame;
     }
 
-    public void removeItem(String itemName) {
-        Optional<Item> optionalItem = player.getItems()
+    public void pickItem(String itemName) {
+        Optional<Item> optionalItem = populateGame.getCurrentRoom().getItems()
                 .stream()
                 .filter(item -> item.getName().equals(itemName))
                 .findFirst();
 
         if (optionalItem.isPresent()) {
             Item item = optionalItem.get();
-            player.removeItem(item);
-            populateGame.getCurrentRoom().addItem(item);
+            player.addItem(item);
+            populateGame.getCurrentRoom().dropItem(item);
         } else {
             System.out.println("Item not found in the current room");
         }
@@ -40,9 +34,10 @@ public class DropCommandAction implements CommandController {
     @Override
     public void execute(String[] inputParts) {
         if (inputParts.length == 2) {
-            removeItem(inputParts[1]);
+            pickItem(inputParts[1]);
         } else {
-            System.out.println("Please choose the item to drop.");
+            System.out.println("Please choose the item to obtain.");
         }
     }
 }
+

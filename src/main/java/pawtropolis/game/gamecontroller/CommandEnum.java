@@ -8,13 +8,23 @@ public enum CommandEnum {
     LOOK("look"),
     EXIT("exit");
 
+<<<<<<< Updated upstream
     private final String name;
+=======
+<<<<<<< HEAD
+    private final String name;
+=======
+    //INVALID COMMAND PER CONTROLLARE LE ECCEZIONI
 
-    CommandEnum(String name) {
-        this.name = name;
+    private final String command;
+>>>>>>> 0d3b65e33ef15664575f9f715fa73b5692c7f0ec
+>>>>>>> Stashed changes
+
+    CommandEnum(String command) {
+        this.command = command;
     }
 
-    public String getName() {
-        return name;
+    public String getCommand() {
+        return command;
     }
 }

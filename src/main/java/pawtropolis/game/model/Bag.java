@@ -1,4 +1,4 @@
-package pawtropolis.game;
+package pawtropolis.game.model;
 
 import java.util.ArrayList;
 import java.util.List;

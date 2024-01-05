@@ -1,7 +1,7 @@
 package pawtropolis.game.gamecontroller;
 
-import pawtropolis.game.*;
 import pawtropolis.game.commands.*;
+import pawtropolis.game.model.Player;
 
 import java.util.*;
 
@@ -19,13 +19,12 @@ public class VideoGameController {
     public void commandAssignment(PopulateGame populateGame){
 
         commandActions.put(CommandEnum.GO, new GoCommandAction(populateGame));
-        commandActions.put(CommandEnum.LOOK, new LookCommandAction( populateGame));
+        commandActions.put(CommandEnum.LOOK, new LookCommandAction(populateGame));
         commandActions.put(CommandEnum.BAG, new BagCommandAction(player));
-        commandActions.put(CommandEnum.GET, new GetCommandAction(player, populateGame ));
+        commandActions.put(CommandEnum.GET, new GetCommandAction(player, populateGame));
         commandActions.put(CommandEnum.DROP, new DropCommandAction(player, populateGame));
         commandActions.put(CommandEnum.EXIT, new ExitCommandAction());
     }
-
 
     public void startGame() {
 
@@ -40,14 +39,13 @@ public class VideoGameController {
         System.out.println("Type bag to view  what's inside the bag");
         System.out.println("Type Exit to end your journey");
 
-
+        boolean gameEnd = false;
         do {
             System.out.print(" -> ");
             playerInput = scanner.nextLine().toLowerCase().trim();
             String[] inputParts = playerInput.split(" ", 2);
 
             CommandEnum command = getCommand(inputParts[0]);
-
             if (command != null) {
                 if (commandActions.containsKey(command)) {
                     commandActions.get(command).execute(inputParts);
@@ -57,15 +55,23 @@ public class VideoGameController {
             } else {
                 System.out.println("Invalid Input, try again");
             }
+<<<<<<< Updated upstream
         } while (!playerInput.equalsIgnoreCase("EXIT"));  //:boolean
+=======
+            if(inputParts[0].equals("exit")){
+                gameEnd = true;
+            }
+        } while (!gameEnd);
+>>>>>>> Stashed changes
     }
 
     private CommandEnum getCommand(String input) {
-        try {
-            return CommandEnum.valueOf(input.toUpperCase());
-        } catch (IllegalArgumentException e) {
-            return null;
+        for (CommandEnum command : CommandEnum.values()) {
+            if (command.getCommand().equalsIgnoreCase(input.trim())) {
+                return command;
+            }
         }
+        return null;
     }
 
 }

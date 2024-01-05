@@ -1,7 +1,7 @@
 package pawtropolis.game.commands;
 
 
-import pawtropolis.game.Player;
+import pawtropolis.game.model.Player;
 import pawtropolis.game.gamecontroller.CommandController;
 
 

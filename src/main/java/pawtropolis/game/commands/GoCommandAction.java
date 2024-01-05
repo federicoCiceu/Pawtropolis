@@ -1,8 +1,13 @@
 package pawtropolis.game.commands;
 
 import pawtropolis.game.gamecontroller.DirectionEnum;
+<<<<<<< Updated upstream
 import pawtropolis.game.PopulateGame;
 import pawtropolis.game.Room;
+=======
+import pawtropolis.game.gamecontroller.GameFactory;
+import pawtropolis.game.model.Room;
+>>>>>>> Stashed changes
 import pawtropolis.game.gamecontroller.CommandController;
 
 public class GoCommandAction implements CommandController {
