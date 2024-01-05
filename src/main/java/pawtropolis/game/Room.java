@@ -1,7 +1,7 @@
 package pawtropolis.game;
 
 import pawtropolis.animals.Animal;
-import pawtropolis.game.commands.DirectionEnum;
+import pawtropolis.game.gamecontroller.DirectionEnum;
 
 import java.util.*;
 

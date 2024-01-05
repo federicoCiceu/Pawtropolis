@@ -1,4 +1,4 @@
-package pawtropolis.game.commands;
+package pawtropolis.game.gamecontroller;
 
 import java.util.Arrays;
 

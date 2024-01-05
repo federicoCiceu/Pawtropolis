@@ -1,5 +1,6 @@
 package pawtropolis.game.commands;
 
+import pawtropolis.game.gamecontroller.DirectionEnum;
 import pawtropolis.game.gamecontroller.GameFactory;
 import pawtropolis.game.Room;
 import pawtropolis.game.gamecontroller.CommandController;

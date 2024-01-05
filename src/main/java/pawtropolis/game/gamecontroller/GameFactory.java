@@ -6,7 +6,6 @@ import pawtropolis.animals.Tiger;
 import pawtropolis.game.Item;
 import pawtropolis.game.Player;
 import pawtropolis.game.Room;
-import pawtropolis.game.commands.*;
 
 
 import java.time.LocalDate;
