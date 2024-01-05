@@ -8,7 +8,11 @@ import pawtropolis.game.gamecontroller.DirectionEnum;
 
 import java.time.LocalDate;
 
+<<<<<<< Updated upstream:src/main/java/pawtropolis/game/PopulateGame.java
 public class PopulateGame {
+=======
+public class GameFactory { //portarla di nuovo in videogamecontroller?
+>>>>>>> Stashed changes:src/main/java/pawtropolis/game/gamecontroller/GameFactory.java
     private final Player player;
     private  Room currentRoom;
 

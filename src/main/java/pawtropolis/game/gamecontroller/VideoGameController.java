@@ -57,7 +57,7 @@ public class VideoGameController {
             } else {
                 System.out.println("Invalid Input, try again");
             }
-        } while (!playerInput.equalsIgnoreCase("EXIT"));
+        } while (!playerInput.equalsIgnoreCase("EXIT"));  //:boolean
     }
 
     private CommandEnum getCommand(String input) {
