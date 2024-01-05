@@ -1,5 +1,8 @@
-package pawtropolis.game;
+package pawtropolis.game.model;
 
+
+import pawtropolis.game.model.Bag;
+import pawtropolis.game.model.Item;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package pawtropolis.game.gamecontroller;
 
-import pawtropolis.game.*;
 import pawtropolis.game.commands.*;
+import pawtropolis.game.model.Player;
 
 import java.util.*;
 
@@ -26,7 +26,6 @@ public class VideoGameController {
         commandActions.put(CommandEnum.EXIT, new ExitCommandAction());
     }
 
-
     public void startGame() {
 
         String playerInput;
@@ -40,14 +39,13 @@ public class VideoGameController {
         System.out.println("Type bag to view  what's inside the bag");
         System.out.println("Type Exit to end your journey");
 
-
+        boolean gameEnd = false;
         do {
             System.out.print(" -> ");
             playerInput = scanner.nextLine().toLowerCase().trim();
             String[] inputParts = playerInput.split(" ", 2);
 
             CommandEnum command = getCommand(inputParts[0]);
-
             if (command != null) {
                 if (commandActions.containsKey(command)) {
                     commandActions.get(command).execute(inputParts);
@@ -57,15 +55,19 @@ public class VideoGameController {
             } else {
                 System.out.println("Invalid Input, try again");
             }
-        } while (!playerInput.equalsIgnoreCase("EXIT"));
+            if(inputParts[0].equals("exit")){
+                gameEnd = true;
+            }
+        } while (!gameEnd);
     }
 
     private CommandEnum getCommand(String input) {
-        try {
-            return CommandEnum.valueOf(input.toUpperCase());
-        } catch (IllegalArgumentException e) {
-            return null;
+        for (CommandEnum command : CommandEnum.values()) {
+            if (command.getCommand().equalsIgnoreCase(input.trim())) {
+                return command;
+            }
         }
+        return null;
     }
 
 }

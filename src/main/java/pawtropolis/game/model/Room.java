@@ -1,4 +1,4 @@
-package pawtropolis.game;
+package pawtropolis.game.model;
 
 import pawtropolis.animals.Animal;
 import pawtropolis.game.gamecontroller.DirectionEnum;

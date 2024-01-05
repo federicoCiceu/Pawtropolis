@@ -1,4 +1,4 @@
-package pawtropolis.game;
+package pawtropolis.game.model;
 
 public class Item {
 

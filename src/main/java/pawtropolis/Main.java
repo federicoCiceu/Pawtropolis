@@ -1,7 +1,7 @@
 package pawtropolis;
 
 import pawtropolis.game.gamecontroller.GameFactory;
-import pawtropolis.game.Player;
+import pawtropolis.game.model.Player;
 import pawtropolis.game.gamecontroller.VideoGameController;
 
 
@@ -12,7 +12,7 @@ public class Main {
 
         VideoGameController videoGameController = new VideoGameController(player);
         GameFactory populateGame = new GameFactory(player);
-        populateGame.populateGame();
+        populateGame.gamePopulation();
         videoGameController.commandAssignment(populateGame);
         videoGameController.startGame();
     }

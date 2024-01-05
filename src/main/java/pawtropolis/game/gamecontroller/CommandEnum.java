@@ -10,13 +10,13 @@ public enum CommandEnum {
 
     //INVALID COMMAND PER CONTROLLARE LE ECCEZIONI
 
-    private final String name;
+    private final String command;
 
-    CommandEnum(String name) {
-        this.name = name;
+    CommandEnum(String command) {
+        this.command = command;
     }
 
-    public String getName() {
-        return name;
+    public String getCommand() {
+        return command;
     }
 }

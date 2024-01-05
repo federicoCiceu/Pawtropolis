@@ -3,9 +3,9 @@ package pawtropolis.game.gamecontroller;
 import pawtropolis.animals.Eagle;
 import pawtropolis.animals.Lion;
 import pawtropolis.animals.Tiger;
-import pawtropolis.game.Item;
-import pawtropolis.game.Player;
-import pawtropolis.game.Room;
+import pawtropolis.game.model.Item;
+import pawtropolis.game.model.Player;
+import pawtropolis.game.model.Room;
 
 
 import java.time.LocalDate;
@@ -33,9 +33,9 @@ public class GameFactory {
     }
 
 
-    public void populateGame() {
+    public void gamePopulation() {
 
-        Item item1 = new Item("sword", "A Sword user’s Normal Attack is typically a chain of “rapid strikes”", 11);
+        Item item1 = new Item("long sword", "A Sword user’s Normal Attack is typically a chain of “rapid strikes”", 11);
         Item item2 = new Item("bow", "A Bow user’s Normal Attack launches a chain of fast, mid-ranged shots", 10);
         Item item3 = new Item("polearm", "A Polearm user’s Normal Attack performs a few rapid, consecutive spear strikes", 10);
         Item item4 = new Item("catalyst", "A Catalyst user applies element to enemies when they are hit with Normal Attack", 11);
