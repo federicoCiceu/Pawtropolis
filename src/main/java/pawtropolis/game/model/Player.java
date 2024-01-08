@@ -1,11 +1,12 @@
 package pawtropolis.game.model;
 
 
-import pawtropolis.game.model.Bag;
-import pawtropolis.game.model.Item;
+import lombok.Data;
+
 
 import java.util.List;
 
+@Data
 public class Player {
 
     private String name;
@@ -17,10 +18,6 @@ public class Player {
         this.lifePoints = lifePoints;
         this.bag = new Bag(30);
 
-    }
-
-    public Bag getBag() {
-        return bag;
     }
 
     public int bagUsedSlots() {
@@ -39,21 +36,6 @@ public class Player {
         bag.dropItem(item);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getLifePoints() {
-        return lifePoints;
-    }
-
-    public void setLifePoints(int lifePoints) {
-        this.lifePoints = lifePoints;
-    }
 
 }
 

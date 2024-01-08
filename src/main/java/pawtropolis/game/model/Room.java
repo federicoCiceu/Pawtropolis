@@ -1,11 +1,12 @@
 package pawtropolis.game.model;
 
+import lombok.Data;
 import pawtropolis.animals.Animal;
 import pawtropolis.game.gamecontroller.DirectionEnum;
 
 import java.util.*;
 
-
+@Data
 public class Room {
     private String name;
     private final List<Item> items;
@@ -42,26 +43,6 @@ public class Room {
         return adjacentsRoom;
     }
 
-    public String getName() {
-        return name;
-    }
-
-
-    public List<Item> getItems() {
-        return items;
-    }
-
-    public List<Animal> getAnimals() {
-        return animals;
-    }
-
-    public void setAnimals(List<Animal> animals) {
-        this.animals = animals;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
 
 

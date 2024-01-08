@@ -1,9 +1,12 @@
 package pawtropolis.game.model;
 
+import lombok.Data;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
+@Data
 public class Bag {
 
     private List<Item> items;
@@ -12,10 +15,6 @@ public class Bag {
     public Bag(int slot) {
         this.items = new ArrayList<>();
         this.slot = slot;
-    }
-
-    public List<Item> getItems() {
-        return items;
     }
 
     public int bagUsedSlots() {
@@ -36,16 +35,5 @@ public class Bag {
         items.remove(item);
     }
 
-    public int getSlot() {
-        return slot;
-    }
-
-    public void setSlot(int slot) {
-        this.slot = slot;
-    }
-
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
 
 }
