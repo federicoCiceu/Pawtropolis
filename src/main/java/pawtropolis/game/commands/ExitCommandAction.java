@@ -1,7 +1,8 @@
 package pawtropolis.game.commands;
 
+import lombok.NoArgsConstructor;
 import pawtropolis.game.gamecontroller.CommandController;
-
+@NoArgsConstructor
 public class ExitCommandAction  implements CommandController {
 
     @Override

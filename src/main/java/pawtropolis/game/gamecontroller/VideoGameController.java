@@ -1,15 +1,15 @@
 package pawtropolis.game.gamecontroller;
 
+import lombok.Getter;
 import pawtropolis.game.commands.*;
 import pawtropolis.game.model.Player;
 
 import java.util.*;
 
-
 public class VideoGameController {
-
-    private final EnumMap<CommandEnum, CommandController> commandActions;
+    @Getter
     private final Player player;
+    private final EnumMap<CommandEnum, CommandController> commandActions;
 
     public VideoGameController(Player player) {
         this.player = player;

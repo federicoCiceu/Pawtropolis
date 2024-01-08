@@ -1,5 +1,6 @@
 package pawtropolis.game.commands;
 
+import lombok.RequiredArgsConstructor;
 import pawtropolis.game.model.Item;
 import pawtropolis.game.model.Player;
 import pawtropolis.game.gamecontroller.GameFactory;
@@ -7,14 +8,10 @@ import pawtropolis.game.gamecontroller.CommandController;
 
 import java.util.Optional;
 
+@RequiredArgsConstructor
 public class GetCommandAction implements CommandController {
-   private final Player player;
+    private final Player player;
     private final GameFactory populateGame;
-
-    public GetCommandAction(Player player, GameFactory populateGame) {
-        this.player = player;
-        this.populateGame = populateGame;
-    }
 
     public void pickItem(String itemName) {
         Optional<Item> optionalItem = populateGame.getCurrentRoom().getItems()
@@ -40,4 +37,3 @@ public class GetCommandAction implements CommandController {
         }
     }
 }
-

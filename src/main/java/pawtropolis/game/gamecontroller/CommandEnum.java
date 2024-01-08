@@ -1,5 +1,8 @@
 package pawtropolis.game.gamecontroller;
 
+import lombok.Getter;
+
+@Getter
 public enum CommandEnum {
     GO("go"),
     GET("get"),
@@ -16,7 +19,4 @@ public enum CommandEnum {
         this.command = command;
     }
 
-    public String getCommand() {
-        return command;
-    }
 }

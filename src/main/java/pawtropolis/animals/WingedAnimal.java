@@ -1,7 +1,12 @@
 package pawtropolis.animals;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDate;
 
+@Setter
+@Getter
 public class WingedAnimal extends Animal {
     private double wingspan;
 
@@ -10,12 +15,4 @@ public class WingedAnimal extends Animal {
         this.wingspan = wingspan;
     }
 
-    public double getWingspan() {
-        return wingspan;
-    }
-
-    public void setWingspan(double wingspan) {
-
-        this.wingspan = wingspan;
-    }
 }

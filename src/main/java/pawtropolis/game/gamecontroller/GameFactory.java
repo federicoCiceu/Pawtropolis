@@ -1,5 +1,7 @@
 package pawtropolis.game.gamecontroller;
 
+import lombok.Getter;
+import lombok.Setter;
 import pawtropolis.animals.Eagle;
 import pawtropolis.animals.Lion;
 import pawtropolis.animals.Tiger;
@@ -12,6 +14,8 @@ import java.time.LocalDate;
 
 public class GameFactory {
     private final Player player;
+    @Setter
+    @Getter
     private Room currentRoom;
 
     public Room roomMonstadt = new Room("Monstadt");
@@ -22,14 +26,6 @@ public class GameFactory {
 
     public GameFactory(Player player) {
         this.player = player;
-    }
-
-    public Room getCurrentRoom() {
-        return currentRoom;
-    }
-
-    public void setCurrentRoom(Room currentRoom) {
-        this.currentRoom = currentRoom;
     }
 
 

@@ -1,5 +1,6 @@
 package pawtropolis.game.commands;
 
+import lombok.RequiredArgsConstructor;
 import pawtropolis.game.model.Item;
 import pawtropolis.game.model.Player;
 import pawtropolis.game.gamecontroller.GameFactory;
@@ -7,14 +8,10 @@ import pawtropolis.game.gamecontroller.CommandController;
 
 import java.util.Optional;
 
+@RequiredArgsConstructor
 public class DropCommandAction implements CommandController {
     private final Player player;
     private final GameFactory populateGame;
-
-    public DropCommandAction(Player player, GameFactory populateGame) {
-        this.player  = player;
-        this.populateGame = populateGame;
-    }
 
     public void dropItem(String itemName) {
         Optional<Item> optionalItem = player.getItems()
@@ -30,7 +27,7 @@ public class DropCommandAction implements CommandController {
             System.out.println("Item not found in the current room");
         }
     }
-    
+
     @Override
     public void execute(String[] inputParts) {
         if (inputParts.length == 2) {

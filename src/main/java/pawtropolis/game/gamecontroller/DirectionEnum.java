@@ -1,7 +1,10 @@
 package pawtropolis.game.gamecontroller;
 
+import lombok.Getter;
+
 import java.util.Arrays;
 
+@Getter
 public enum DirectionEnum {
     NORTH ("north"),
     SOUTH ("south"),
@@ -31,7 +34,4 @@ public enum DirectionEnum {
     }
 
 
-    public String getName() {
-        return name;
-    }
 }
