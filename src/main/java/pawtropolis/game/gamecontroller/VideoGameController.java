@@ -27,9 +27,7 @@ public class VideoGameController {
     }
 
     public void startGame() {
-
         String playerInput;
-
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Welcome to Pawtropolis!");
