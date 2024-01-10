@@ -2,6 +2,8 @@ package pawtropolis.game.gamecontroller;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import pawtropolis.animals.Eagle;
 import pawtropolis.animals.Lion;
 import pawtropolis.animals.Tiger;
@@ -10,8 +12,8 @@ import pawtropolis.game.model.Player;
 import pawtropolis.game.model.Room;
 
 
+import java.beans.BeanProperty;
 import java.time.LocalDate;
-
 public class GameFactory {
     private final Player player;
     @Setter

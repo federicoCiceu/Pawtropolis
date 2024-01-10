@@ -11,8 +11,6 @@ public enum CommandEnum {
     LOOK("look"),
     EXIT("exit");
 
-    //INVALID COMMAND PER CONTROLLARE LE ECCEZIONI
-
     private final String command;
 
     CommandEnum(String command) {

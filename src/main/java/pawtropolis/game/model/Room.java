@@ -1,6 +1,7 @@
 package pawtropolis.game.model;
 
 import lombok.Data;
+import org.springframework.stereotype.Component;
 import pawtropolis.animals.Animal;
 import pawtropolis.game.gamecontroller.DirectionEnum;
 
@@ -11,7 +12,7 @@ public class Room {
     private String name;
     private final List<Item> items;
     private List<Animal> animals;
-    private final EnumMap<DirectionEnum, Room> adjacentsRoom;
+    private EnumMap<DirectionEnum, Room> adjacentsRoom;
 
 
     public Room(String roomName) {
