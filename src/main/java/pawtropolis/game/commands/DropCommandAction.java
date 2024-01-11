@@ -1,9 +1,10 @@
 package pawtropolis.game.commands;
 
 import lombok.RequiredArgsConstructor;
+import pawtropolis.game.gamecontroller.VideoGameController;
 import pawtropolis.game.model.Item;
 import pawtropolis.game.model.Player;
-import pawtropolis.game.gamecontroller.GameFactory;
+import pawtropolis.game.gamecontroller.VideoGameController;
 import pawtropolis.game.gamecontroller.CommandController;
 
 import java.util.Optional;
@@ -11,7 +12,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class DropCommandAction implements CommandController {
     private final Player player;
-    private final GameFactory populateGame;
+    private final VideoGameController populateGame;
 
     public void dropItem(String itemName) {
         Optional<Item> optionalItem = player.getItems()

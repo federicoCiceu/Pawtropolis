@@ -2,14 +2,14 @@ package pawtropolis.game.commands;
 
 import lombok.RequiredArgsConstructor;
 import pawtropolis.game.gamecontroller.DirectionEnum;
-import pawtropolis.game.gamecontroller.GameFactory;
+import pawtropolis.game.gamecontroller.VideoGameController;
 import pawtropolis.game.model.Room;
 import pawtropolis.game.gamecontroller.CommandController;
 
 @RequiredArgsConstructor
 public class GoCommandAction implements CommandController {
 
-    private final GameFactory populateGame;
+    private final VideoGameController populateGame;
 
     public void goRoom(DirectionEnum direction) {
         if (populateGame.getCurrentRoom().getAdjacentsRoom().containsKey(direction)) {

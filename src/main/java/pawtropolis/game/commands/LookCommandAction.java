@@ -1,13 +1,13 @@
 package pawtropolis.game.commands;
 
 import lombok.RequiredArgsConstructor;
-import pawtropolis.game.gamecontroller.GameFactory;
+import pawtropolis.game.gamecontroller.VideoGameController;
 import pawtropolis.game.model.Room;
 import pawtropolis.game.gamecontroller.CommandController;
 
 @RequiredArgsConstructor
 public class LookCommandAction implements CommandController {
-    private final GameFactory populateGame;
+    private final VideoGameController populateGame;
 
     private String getAvailableDirections(Room room) {
         return room.getAdjacentsRoom().keySet().toString();

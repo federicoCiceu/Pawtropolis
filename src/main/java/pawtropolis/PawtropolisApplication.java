@@ -11,4 +11,3 @@ public class PawtropolisApplication {
     public static void main(String[] args) {SpringApplication.run(PawtropolisApplication.class, args);}
 
 }
-
