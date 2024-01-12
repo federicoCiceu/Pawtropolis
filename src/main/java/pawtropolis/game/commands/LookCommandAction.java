@@ -1,6 +1,7 @@
 package pawtropolis.game.commands;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pawtropolis.game.gamecontroller.VideoGameController;
 import pawtropolis.game.model.Room;
@@ -9,7 +10,8 @@ import pawtropolis.game.gamecontroller.CommandController;
 @RequiredArgsConstructor
 @Component
 public class LookCommandAction implements CommandController {
-    private final VideoGameController gamePopulation;
+    @Autowired
+    private VideoGameController gamePopulation;
 
     private String getAvailableDirections(Room room) {
         return room.getAdjacentsRoom().keySet().toString();

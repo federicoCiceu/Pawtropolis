@@ -1,20 +1,17 @@
 package pawtropolis.game.commands;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pawtropolis.game.gamecontroller.DirectionEnum;
 import pawtropolis.game.gamecontroller.VideoGameController;
 import pawtropolis.game.model.Room;
 import pawtropolis.game.gamecontroller.CommandController;
-
 @RequiredArgsConstructor
 @Component
 public class GoCommandAction implements CommandController {
-
-    private final VideoGameController gamePopulation;
-
+    @Autowired
+    private VideoGameController gamePopulation;
 
     public void goRoom(DirectionEnum direction) {
         if (gamePopulation.getCurrentRoom().getAdjacentsRoom().containsKey(direction)) {

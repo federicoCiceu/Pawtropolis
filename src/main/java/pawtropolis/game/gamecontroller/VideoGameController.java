@@ -1,40 +1,44 @@
 package pawtropolis.game.gamecontroller;
 
+import jakarta.annotation.PostConstruct;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import pawtropolis.animals.Eagle;
 import pawtropolis.animals.Lion;
 import pawtropolis.animals.Tiger;
 import pawtropolis.game.commands.*;
+import pawtropolis.game.model.Bag;
 import pawtropolis.game.model.Item;
 import pawtropolis.game.model.Player;
 import pawtropolis.game.model.Room;
-
 import java.time.LocalDate;
 import java.util.*;
 
+@Setter
+@Getter
 @Component
 public class VideoGameController {
-    @Getter
-    private final Player player;
-    private final EnumMap<CommandEnum, CommandController> commandActions;
-    @Setter
-    @Getter
     private Room currentRoom;
+    private Player player;
+    private Bag bag;
+    private Map<CommandEnum, String> commandActions;
+    private ListableBeanFactory beanFactory;
 
-    public VideoGameController(Player player) {
+    @Autowired
+    public VideoGameController(Player player, ListableBeanFactory beanFactory) {
         this.player = player;
+        this.beanFactory = beanFactory;
         this.commandActions = new EnumMap<>(CommandEnum.class);
-
-        commandActions.put(CommandEnum.GO, new GoCommandAction(this));
-        commandActions.put(CommandEnum.LOOK, new LookCommandAction(this ));
-        commandActions.put(CommandEnum.BAG, new BagCommandAction(player));
-        commandActions.put(CommandEnum.GET, new GetCommandAction(player, this));
-        commandActions.put(CommandEnum.DROP, new DropCommandAction(player, this));
-        commandActions.put(CommandEnum.EXIT, new ExitCommandAction());
-
+        this.commandActions.put(CommandEnum.GO, "goCommandAction");
+        this.commandActions.put(CommandEnum.LOOK, "lookCommandAction");
+        this.commandActions.put(CommandEnum.BAG, "bagCommandAction");
+        this.commandActions.put(CommandEnum.GET, "getCommandAction");
+        this.commandActions.put(CommandEnum.DROP, "dropCommandAction");
+        this.commandActions.put(CommandEnum.EXIT, "exitCommandAction");
     }
 
     public void populateGame() {
@@ -106,7 +110,9 @@ public class VideoGameController {
             CommandEnum command = getCommand(inputParts[0]);
             if (command != null) {
                 if (commandActions.containsKey(command)) {
-                    commandActions.get(command).execute(inputParts);
+                    String beanName = commandActions.get(command);
+                    CommandController commandController = beanFactory.getBean(beanName,CommandController.class);
+                    commandController.execute(inputParts);
                 } else {
                     System.out.println("Invalid command, try again");
                 }

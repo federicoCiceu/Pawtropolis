@@ -1,12 +1,19 @@
 package pawtropolis;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Import;
+import pawtropolis.game.gamecontroller.GameController;
 
 @SpringBootApplication
-@Import(GameController.class)
-public class PawtropolisApplication {
+public class PawtropolisApplication implements CommandLineRunner {
+    @Autowired
+    private GameController gameController;
     public static void main(String[] args) {SpringApplication.run(PawtropolisApplication.class, args);}
 
+    @Override
+    public void run(String... args) throws Exception {
+        gameController.startGame();
+    }
 }

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import pawtropolis.game.gamecontroller.CommandController;
 @NoArgsConstructor
 @Component
-public class ExitCommandAction  implements CommandController {
+public class ExitCommandAction implements CommandController {
 
     @Override
     public void execute(String[] inputParts) {
