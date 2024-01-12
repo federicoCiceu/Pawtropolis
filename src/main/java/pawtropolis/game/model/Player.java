@@ -2,22 +2,25 @@ package pawtropolis.game.model;
 
 
 import lombok.Data;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 
 import java.util.List;
 
 @Data
+@Component
 public class Player {
 
     private String name;
     private int lifePoints;
     private final Bag bag;
 
-    public Player(String name, int lifePoints) {
-        this.name = name;
-        this.lifePoints = lifePoints;
-        this.bag = new Bag(30);
-
+    @Autowired
+    public Player(Bag bag) {
+        this.bag = bag;
     }
 
     public int bagUsedSlots() {

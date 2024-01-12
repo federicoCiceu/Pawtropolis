@@ -1,18 +1,20 @@
 package pawtropolis.game.model;
 
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 @Data
+@Component
 public class Bag {
-
     private List<Item> items;
     private int slot;
 
-    public Bag(int slot) {
+    public Bag(@Value("${bag.slot}")int slot) {
         this.items = new ArrayList<>();
         this.slot = slot;
     }

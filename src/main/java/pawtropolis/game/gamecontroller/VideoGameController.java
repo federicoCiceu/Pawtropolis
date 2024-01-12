@@ -2,6 +2,8 @@ package pawtropolis.game.gamecontroller;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pawtropolis.animals.Eagle;
 import pawtropolis.animals.Lion;
 import pawtropolis.animals.Tiger;
@@ -13,6 +15,7 @@ import pawtropolis.game.model.Room;
 import java.time.LocalDate;
 import java.util.*;
 
+@Component
 public class VideoGameController {
     @Getter
     private final Player player;
@@ -21,19 +24,26 @@ public class VideoGameController {
     @Getter
     private Room currentRoom;
 
-    public Room roomMonstadt = new Room("Monstadt");
-    public Room roomLiyue = new Room("Liyue");
-    public Room roomInazuma = new Room("Inazuma");
-    public Room roomSumeru = new Room("Sumeru");
-    public Room roomFontaine = new Room("Fontaine");
-
-
     public VideoGameController(Player player) {
         this.player = player;
         this.commandActions = new EnumMap<>(CommandEnum.class);
+
+        commandActions.put(CommandEnum.GO, new GoCommandAction(this));
+        commandActions.put(CommandEnum.LOOK, new LookCommandAction(this ));
+        commandActions.put(CommandEnum.BAG, new BagCommandAction(player));
+        commandActions.put(CommandEnum.GET, new GetCommandAction(player, this));
+        commandActions.put(CommandEnum.DROP, new DropCommandAction(player, this));
+        commandActions.put(CommandEnum.EXIT, new ExitCommandAction());
+
     }
 
-    public void gamePopulation() {
+    public void populateGame() {
+
+        Room roomMonstadt = new Room("Monstadt");
+        Room roomLiyue = new Room("Liyue");
+        Room roomInazuma = new Room("Inazuma");
+        Room roomSumeru = new Room("Sumeru");
+        Room roomFontaine = new Room("Fontaine");
 
         Item item1 = new Item("long sword", "A Sword user’s Normal Attack is typically a chain of “rapid strikes”", 5);
         Item item2 = new Item("bow", "A Bow user’s Normal Attack launches a chain of fast, mid-ranged shots", 10);
@@ -74,16 +84,6 @@ public class VideoGameController {
         roomFontaine.addAnimal(tiger3);
 
         currentRoom = roomMonstadt;
-    }
-
-    public void commandAssignment(VideoGameController populateGame){
-
-        commandActions.put(CommandEnum.GO, new GoCommandAction(populateGame));
-        commandActions.put(CommandEnum.LOOK, new LookCommandAction( populateGame));
-        commandActions.put(CommandEnum.BAG, new BagCommandAction(player));
-        commandActions.put(CommandEnum.GET, new GetCommandAction(player, populateGame ));
-        commandActions.put(CommandEnum.DROP, new DropCommandAction(player, populateGame));
-        commandActions.put(CommandEnum.EXIT, new ExitCommandAction());
     }
 
     public void startGame() {

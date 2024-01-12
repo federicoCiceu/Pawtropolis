@@ -1,8 +1,11 @@
 package pawtropolis.game.commands;
 
 import lombok.NoArgsConstructor;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import pawtropolis.game.gamecontroller.CommandController;
 @NoArgsConstructor
+@Component
 public class ExitCommandAction  implements CommandController {
 
     @Override

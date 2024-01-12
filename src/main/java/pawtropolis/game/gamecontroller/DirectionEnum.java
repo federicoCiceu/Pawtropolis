@@ -1,6 +1,8 @@
 package pawtropolis.game.gamecontroller;
 
 import lombok.Getter;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 

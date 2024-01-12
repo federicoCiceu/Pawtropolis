@@ -1,33 +1,35 @@
 package pawtropolis.game.commands;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import pawtropolis.game.gamecontroller.VideoGameController;
 import pawtropolis.game.model.Room;
 import pawtropolis.game.gamecontroller.CommandController;
 
 @RequiredArgsConstructor
+@Component
 public class LookCommandAction implements CommandController {
-    private final VideoGameController populateGame;
+    private final VideoGameController gamePopulation;
 
     private String getAvailableDirections(Room room) {
         return room.getAdjacentsRoom().keySet().toString();
     }
 
     public void lookRoom() {
-        System.out.println("You're in the room: " + populateGame.getCurrentRoom().getName());
-        System.out.println("Available directions: " + getAvailableDirections(populateGame.getCurrentRoom()));
+        System.out.println("You're in the room: " + gamePopulation.getCurrentRoom().getName());
+        System.out.println("Available directions: " + getAvailableDirections(gamePopulation.getCurrentRoom()));
 
-        if (!populateGame.getCurrentRoom().getItems().isEmpty()) {
+        if (!gamePopulation.getCurrentRoom().getItems().isEmpty()) {
             System.out.println("Available items:");
-            populateGame.getCurrentRoom().getItems().forEach(item ->
+            gamePopulation.getCurrentRoom().getItems().forEach(item ->
                     System.out.println("- " + item.getName() + ": " + item.getDescription()));
         } else {
             System.out.println("There are no items in this room");
         }
 
-        if (!populateGame.getCurrentRoom().getAnimals().isEmpty()) {
+        if (!gamePopulation.getCurrentRoom().getAnimals().isEmpty()) {
             System.out.println("NPC:");
-            populateGame.getCurrentRoom().getAnimals().forEach(animal ->
+            gamePopulation.getCurrentRoom().getAnimals().forEach(animal ->
                     System.out.println("- " + animal.getNickname() + " (" +
                             animal.getClass().getSimpleName() + ")"));
         } else {

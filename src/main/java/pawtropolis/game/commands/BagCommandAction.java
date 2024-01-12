@@ -1,10 +1,13 @@
 package pawtropolis.game.commands;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import pawtropolis.game.model.Player;
 import pawtropolis.game.gamecontroller.CommandController;
 
 @RequiredArgsConstructor
+@Component
 public class BagCommandAction implements CommandController {
 
     private final Player player;
