@@ -7,7 +7,7 @@ import pawtropolis.game.model.Room;
 
 @RequiredArgsConstructor
 @Component
-public class LookCommand implements CommandController {
+public class LookCommand implements Command {
     private final GameController gamePopulation;
 
     private String getAvailableDirections(Room room) {

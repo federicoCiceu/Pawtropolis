@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @Component
-public class DropCommand implements CommandController {
+public class DropCommand implements Command {
     private final GameController gamePopulation;
 
     private void dropItem(String itemName) {

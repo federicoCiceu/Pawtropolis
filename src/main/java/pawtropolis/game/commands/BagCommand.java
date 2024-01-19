@@ -6,7 +6,7 @@ import pawtropolis.game.gamecontroller.GameController;
 
 @RequiredArgsConstructor
 @Component
-public class BagCommand implements CommandController {
+public class BagCommand implements Command {
     private final GameController populateGame;
 
     private void viewBag() {

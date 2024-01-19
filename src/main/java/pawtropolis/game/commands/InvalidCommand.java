@@ -6,7 +6,7 @@ import pawtropolis.game.gamecontroller.GameController;
 
 @RequiredArgsConstructor
 @Component
-public class InvalidCommand implements CommandController{
+public class InvalidCommand implements Command {
     private final GameController gamePopulation;
 
     @Override

@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @Component
-public class GetCommand implements CommandController {
+public class GetCommand implements Command {
     private final GameController gamePopulation;
 
     private void pickItem(String itemName) {
@@ -17,7 +17,6 @@ public class GetCommand implements CommandController {
                 .stream()
                 .filter(item -> item.getName().equals(itemName))
                 .findFirst();
-
         if (optionalItem.isPresent()) {
             Item item = optionalItem.get();
             gamePopulation.getPlayer().addItem(item);

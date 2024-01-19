@@ -1,9 +1,7 @@
 package pawtropolis.game.gamecontroller;
 
 import lombok.Data;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.stereotype.Component;
 import pawtropolis.animals.Eagle;
@@ -31,6 +29,7 @@ public class GameController {
         player = new Player();
         player.setLifePoints(100);
         player.setName("Yoimiya");
+
         Room roomMonstadt = new Room("Monstadt");
         Room roomLiyue = new Room("Liyue");
         Room roomInazuma = new Room("Inazuma");
@@ -95,17 +94,13 @@ public class GameController {
             String[] inputParts = playerInput.split(" ", 2);
             String commandString = (inputParts[0]);
             String beanName = commandString + "Command";
-            CommandController commandController;
+            Command command;
             if(beanFactory.containsBean(beanName)){
-                commandController = beanFactory.getBean(beanName, CommandController.class);
+                command = beanFactory.getBean(beanName, Command.class);
             }else{
-                commandController = beanFactory.getBean("invalidCommand", CommandController.class);
+                command = beanFactory.getBean("invalidCommand", Command.class);
             }
-            commandController.execute(inputParts);
+            command.execute(inputParts);
         }
-
     }
-
-
-
 }

@@ -8,7 +8,7 @@ import pawtropolis.game.model.Room;
 
 @RequiredArgsConstructor
 @Component
-public class GoCommand implements CommandController {
+public class GoCommand implements Command {
     private final GameController gamePopulation;
 
     private void goRoom(DirectionEnum direction) {

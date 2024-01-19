@@ -1,7 +1,7 @@
 package pawtropolis.game.commands;
 
 
-public interface CommandController {
+public interface Command {
     void execute(String[] inputParts);
 
 }

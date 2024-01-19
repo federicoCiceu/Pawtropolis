@@ -15,6 +15,6 @@ public class PawtropolisApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         gameController.startGame();
-        //System.exit(0);
+
     }
 }
