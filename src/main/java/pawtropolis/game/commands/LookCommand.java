@@ -1,23 +1,20 @@
 package pawtropolis.game.commands;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import pawtropolis.game.gamecontroller.VideoGameController;
+import pawtropolis.game.gamecontroller.GameController;
 import pawtropolis.game.model.Room;
-import pawtropolis.game.gamecontroller.CommandController;
 
 @RequiredArgsConstructor
 @Component
-public class LookCommandAction implements CommandController {
-    @Autowired
-    private VideoGameController gamePopulation;
+public class LookCommand implements CommandController {
+    private final GameController gamePopulation;
 
     private String getAvailableDirections(Room room) {
         return room.getAdjacentsRoom().keySet().toString();
     }
 
-    public void lookRoom() {
+    private void lookRoom() {
         System.out.println("You're in the room: " + gamePopulation.getCurrentRoom().getName());
         System.out.println("Available directions: " + getAvailableDirections(gamePopulation.getCurrentRoom()));
 

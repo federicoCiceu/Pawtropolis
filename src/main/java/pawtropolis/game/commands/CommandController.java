@@ -1,4 +1,4 @@
-package pawtropolis.game.gamecontroller;
+package pawtropolis.game.commands;
 
 
 public interface CommandController {

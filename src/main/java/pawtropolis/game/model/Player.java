@@ -11,9 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Data
-@Component
 public class Player {
-
     private String name;
     private int lifePoints;
     private Bag bag;
@@ -37,7 +35,6 @@ public class Player {
     public void dropItem(Item item){
         bag.dropItem(item);
     }
-
 
 }
 
