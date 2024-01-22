@@ -19,8 +19,12 @@ public class GetCommand implements Command {
                 .findFirst();
         if (optionalItem.isPresent()) {
             Item item = optionalItem.get();
-            gamePopulation.getPlayer().addItem(item);
-            gamePopulation.getCurrentRoom().dropItem(item);
+            if(gamePopulation.getPlayer().bagUsedSlots() + item.getSlotRequired() < gamePopulation.getPlayer().getBag().getSlot()) {
+                gamePopulation.getPlayer().addItem(item);
+                gamePopulation.getCurrentRoom().dropItem(item);
+            }else{
+                System.out.println("The bag is full, cant add item");
+            }
         } else {
             System.out.println("Item not found in the current room");
         }

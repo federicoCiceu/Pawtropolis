@@ -29,11 +29,7 @@ public class Player {
     }
 
     public void addItem(Item item) {
-        if (bagUsedSlots() + item.getSlotRequired() < bag.getSlot()) {
             bag.getItems().add(item);
-        } else {
-            System.out.println("The bag is full. Can't add " + item.getName() + ".");
-        }
     }
 
     public void dropItem(Item item){

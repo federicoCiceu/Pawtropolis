@@ -1,6 +1,7 @@
 package pawtropolis.game.commands;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pawtropolis.game.gamecontroller.GameController;
 import pawtropolis.game.model.Item;
