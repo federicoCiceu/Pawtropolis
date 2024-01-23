@@ -8,10 +8,8 @@ import pawtropolis.animals.Eagle;
 import pawtropolis.animals.Lion;
 import pawtropolis.animals.Tiger;
 import pawtropolis.game.commands.*;
-import pawtropolis.game.model.Bag;
-import pawtropolis.game.model.Item;
-import pawtropolis.game.model.Player;
-import pawtropolis.game.model.Room;
+import pawtropolis.game.model.*;
+
 import java.time.LocalDate;
 import java.util.*;
 
@@ -24,6 +22,7 @@ public class GameController {
     private Bag bag;
     private final ListableBeanFactory beanFactory;
     boolean gameEnd;
+    private Door door;
 
     public void populateGame() {
         player = new Player();
@@ -52,6 +51,14 @@ public class GameController {
         Eagle eagle1 = new Eagle("Xiao", "Rabbit", 30, LocalDate.of(1993, 10, 18), 3.40, 0.69, 23);
         Eagle eagle2 = new Eagle("Dvalin", "Chicken", 30, LocalDate.of(1993, 5, 1), 2.48, 0.90, 33);
         Eagle eagle3 = new Eagle("Ayaka", "Mouse", 1, LocalDate.of(2023, 6, 28), 1.98, 0.45, 13);
+
+        Door door1 = new Door(true, item1);
+        Door door2 = new Door(true, item2);
+        Door door3 = new Door(true, item4);
+
+        roomMonstadt.addDoor(DirectionEnum.WEST, door1);
+        roomLiyue.addDoor(DirectionEnum.WEST, door2);
+        roomLiyue.addDoor(DirectionEnum.SOUTH, door3);
 
         roomMonstadt.addAdjacents(DirectionEnum.WEST, roomLiyue);
         roomLiyue.addAdjacents(DirectionEnum.SOUTH, roomInazuma);

@@ -14,7 +14,7 @@ public class LookCommand implements Command {
         return room.getAdjacentsRoom().keySet().toString();
     }
 
-    private void lookRoom() {
+    void lookRoom() {
         System.out.println("You're in the room: " + gamePopulation.getCurrentRoom().getName());
         System.out.println("Available directions: " + getAvailableDirections(gamePopulation.getCurrentRoom()));
 
