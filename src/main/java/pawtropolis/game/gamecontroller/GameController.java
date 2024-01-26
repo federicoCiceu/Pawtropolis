@@ -40,6 +40,11 @@ public class GameController {
         Item item3 = new Item("polearm", "A Polearm user’s Normal Attack performs a few rapid, consecutive spear strikes", 10);
         Item item4 = new Item("catalyst", "A Catalyst user applies element to enemies when they are hit with Normal Attack", 11);
 
+        Door door1 = new Door(true, item1, roomMonstadt, roomLiyue);
+        Door door2 = new Door(true, item2, roomLiyue, roomInazuma);
+        Door door3 = new Door(true, item3, roomLiyue, roomSumeru);
+        Door door4 = new Door(true, item4, roomSumeru, roomFontaine);
+
         Lion lion1 = new Lion("Venti", "Ribs", 4, LocalDate.of(2019, 1, 23), 2.0, 1.28, 40);
         Lion lion2 = new Lion("Zhongli", "Chicken", 8, LocalDate.of(2015, 4, 10), 1.09, 1.17, 36);
         Lion lion3 = new Lion("Raiden", "Pork", 10, LocalDate.of(2013, 12, 5), 2.80, 1.20, 55);
@@ -52,18 +57,10 @@ public class GameController {
         Eagle eagle2 = new Eagle("Dvalin", "Chicken", 30, LocalDate.of(1993, 5, 1), 2.48, 0.90, 33);
         Eagle eagle3 = new Eagle("Ayaka", "Mouse", 1, LocalDate.of(2023, 6, 28), 1.98, 0.45, 13);
 
-        Door door1 = new Door(true, item1);
-        Door door2 = new Door(true, item2);
-        Door door3 = new Door(true, item4);
-
-        roomMonstadt.addDoor(DirectionEnum.WEST, door1);
-        roomLiyue.addDoor(DirectionEnum.WEST, door2);
-        roomLiyue.addDoor(DirectionEnum.SOUTH, door3);
-
-        roomMonstadt.addAdjacents(DirectionEnum.WEST, roomLiyue);
-        roomLiyue.addAdjacents(DirectionEnum.SOUTH, roomInazuma);
-        roomLiyue.addAdjacents(DirectionEnum.WEST, roomSumeru);
-        roomSumeru.addAdjacents(DirectionEnum.NORTH, roomFontaine);
+        roomMonstadt.addDoor(DirectionEnum.EAST, door1);
+        roomLiyue.addDoor(DirectionEnum.SOUTH, door2);
+        roomLiyue.addDoor(DirectionEnum.EAST, door3);
+        roomSumeru.addDoor(DirectionEnum.NORTH, door4);
 
         roomMonstadt.addItem(item1);
         roomLiyue.addItem(item2);
@@ -80,6 +77,8 @@ public class GameController {
         roomSumeru.addAnimal(tiger1);
         roomFontaine.addAnimal(tiger2);
         roomFontaine.addAnimal(tiger3);
+
+
 
         currentRoom = roomMonstadt;
     }

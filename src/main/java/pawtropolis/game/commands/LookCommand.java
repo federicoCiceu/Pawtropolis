@@ -15,20 +15,26 @@ public class LookCommand implements Command {
     private final GameController gamePopulation;
 
     private String getAvailableDirections(Room room) {
-        return room.getAdjacentsRoom().keySet().toString();
+        StringBuilder directions = new StringBuilder();
+
+        for (Map.Entry<DirectionEnum, Door> entry : room.getDoors().entrySet()) {
+            DirectionEnum directionEnum = entry.getKey();
+            Door door = entry.getValue();
+
+            String doorStatus = door.isLocked() ? "locked" : "unlocked";
+            directions.append(directionEnum).append(" door (").append(doorStatus).append("), ");
+        }
+
+        if (!directions.isEmpty()) {
+            directions.setLength(directions.length() - 2);
+        }
+
+        return directions.toString();
     }
 
     void lookRoom() {
         System.out.println("You're in the room: " + gamePopulation.getCurrentRoom().getName());
         System.out.println("Available directions: " + getAvailableDirections(gamePopulation.getCurrentRoom()));
-
-        for (Map.Entry<DirectionEnum, Door> entry : gamePopulation.getCurrentRoom().getDoors().entrySet()){
-            DirectionEnum directionEnum = entry.getKey();
-            Door door =  entry.getValue();
-
-            String doorStatus = door.isLocked() ? "locked" : "unlocked";
-            System.out.println("The " + directionEnum + " door is currently " + doorStatus);
-        }
 
         if (!gamePopulation.getCurrentRoom().getItems().isEmpty()) {
             System.out.println("Available items:");
@@ -46,7 +52,6 @@ public class LookCommand implements Command {
         } else {
             System.out.println("There are no NPCs in this room");
         }
-
     }
 
     @Override
